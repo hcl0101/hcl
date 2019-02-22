@@ -5,9 +5,6 @@
 </template>
 
 <style lang="scss">
-  @import './reset.css';
-  @import './assets/icon/iconfont.css';
-
   html, body, #app {
     height: 100%;
   }
