@@ -1,25 +1,32 @@
 <template>
   <div>
     <button @click="handleClick">{{ btnText }}</button>
-    <Drawer
+    <template v-for="(api, index) in apis">
+      <Table :key="index" :title="api.title" :data="api.data"></Table>
+    </template>
+    <hcl-drawer
       title="标题"
-      :visible="visible">
-      <div>测试</div>
-    </Drawer>
+      :visible.sync="visible">
+      <div>内容...</div>
+    </hcl-drawer>
   </div>
 </template>
 
 <script>
-import Drawer from '@/components/drawer/Drawer';
+import hclDrawer from '@/components/hcl-drawer/hcl-drawer';
+import Table from '@/views/Table';
+import API from './api';
 
 export default {
   components: {
-    Drawer
+    hclDrawer,
+    Table
   },
 
   data() {
     return {
-      visible: false
+      visible: false,
+      apis: API
     }
   },
 

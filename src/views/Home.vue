@@ -47,7 +47,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .hcl, aside, main {
+  .hcl {
     height: 100%;
   }
   .hcl {
@@ -71,6 +71,8 @@
     main {
       flex: 1;
       width: 0;
+      padding: 15px;
+      overflow: auto;
     }
   }
 </style>

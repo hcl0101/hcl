@@ -1,34 +1,3 @@
-<!--
-依赖： 
-  iconfont中的antD图标
-  elementUi中的el-button
--->
-
-<!-- 
-props:
-  参数            类型              默认值       说明    
-  title           String           ''           抽屉的标题  //show-header为true
-  width           String|Number    256          抽屉的宽度
-  placement       String           'right'      抽屉的方向 right | left
-  visible         Boolean          false        是否可见
-  duration        String | Number  0.5          动画持续时间
-  mask            Boolean          true         是否显示遮罩层
-  maskClosable    Boolean          true         点击遮罩层，是否允许关闭
-  closable        Boolean          false        是否展示右上角关闭图标
-  show-header     Boolean          true         是否在顶部展示header
-  show-footer     Boolean          false        是否在底部展示footer
-  show-handle     Boolean          false        是否显示关闭器
-  handleBottom    Number           26           关闭器距离底部的距离
-  loading         Boolean          false        底部的提交按钮的状态， 需要配合show-footer使用
-  drawerClass     String           ''           外部传入的class样式， 用于自定义drawer
-
-event：
-  方法名          参数              说明
-  onClose         event对象         抽屉收起时的回调，
-  onSubmit        event对象         设置footer后，点击确认按钮触发的事件
--->
-
-
 <template>
   <div
     :class="[
@@ -40,7 +9,7 @@ event：
     <div
       class="hcl-drawer-mask"
       :style="{ background: mask ? '' : 'inherit' }"
-      @click="handleClick($event)">
+      @click="clickMask($event)">
     </div>
     <div
       class="hcl-drawer-content-wrapper"
@@ -93,20 +62,62 @@ export default {
   name: 'Drawer',
 
   props: {
-    title: { type: String, default: '' },               //标题
-    width: { type: [ Number, String ], default: 256 },  //drawer的宽度
-    placement: { type: String, default: 'right' },      //抽屉的方向： left|right
-    visible: { type: Boolean, default: false },         //drawer是否可见
-    duration: { type: [ Number, String ], default: '0.5' }, //动画持续时间
-    mask: { type: Boolean, default: true },             //是否有遮罩层
-    maskClosable: { type: Boolean, default: true },     //是否点击遮罩层关闭
-    closable: { type: Boolean, default: false },        //是否显示右上角关闭按钮
-    showHeader: { type: Boolean, default: true },       //是否显示header
-    showFooter: { type: Boolean, default: false },      //是否有footer
-    showHandle: { type: Boolean, default: false },      //是否显示关闭器
-    handleBottom: { type: Number, default: 26 },        //关闭器距离底部的距离
-    loading: { type: Boolean, default: false },         //点击确认时button的加载状态， 配合footer使用
-    drawerClass: { type: String, default: '' }          //外部的drawer的样式
+    title: {
+      type: String,
+      default: '标题'
+    },
+    width: {
+      type: [ Number, String ],
+      default: 256
+    },
+    placement: {
+      type: String,
+      default: 'right'
+    },
+    visible: {
+      type: Boolean,
+      default: false
+    },
+    duration: {
+      type: [ Number, String ],
+      default: '0.5'
+    },
+    mask: {
+      type: Boolean,
+      default: true
+    },
+    maskClosable: {
+      type: Boolean,
+      default: true
+    },
+    closable: {
+      type: Boolean,
+      default: false
+    },
+    showHeader: {
+      type: Boolean,
+      default: true
+    },
+    showFooter: {
+      type: Boolean,
+      default: false
+    },
+    showHandle: {
+      type: Boolean,
+      default: false
+    },
+    handleBottom: {
+      type: Number,
+      default: 26
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    drawerClass: {
+      type: String,
+      default: ''
+    }
   },
 
   computed: {
@@ -154,18 +165,19 @@ export default {
   },
 
   methods: {    
-    handleClick(event) {
+    clickMask(event) {
       if (this.mask && this.maskClosable) {
         this.closeDrawer(event);
       }
     },
 
     openDrawer() {
-      this.$emit('onOpen');
+      this.$emit('open');
     },
 
     closeDrawer(event) {
-      this.$emit('onClose', event);
+      this.$emit('update:visible', false);
+      this.$emit('close', event);
       setTimeout(() => {
         this.$emit('closed', event);
       }, this.duration * 1000);
@@ -180,7 +192,7 @@ export default {
     },
 
     submit(event) {
-      this.$emit('onSubmit', event);
+      this.$emit('sumit', event);
     }
   }
 }
