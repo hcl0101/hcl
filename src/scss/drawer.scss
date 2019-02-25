@@ -12,6 +12,18 @@ $prefixCls: 'hcl-drawer';
   > * {
     transition: transform 0.5s;
   }
+  &.#{$prefixCls}-open {
+    overflow: hidden;
+    & > * {
+      pointer-events: auto;
+    }
+    .#{$prefixCls}-mask {
+      opacity: .3 !important;
+    }
+    .#{$prefixCls}__right {
+      transition: width 0.5s;
+    }
+  }
   &-mask {
     position: fixed;
     top: 0;
@@ -26,35 +38,27 @@ $prefixCls: 'hcl-drawer';
   &-wrapper {
     position: absolute;
     height: 100%;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
     background: #fff;
-    &-trigger {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #fff;
-      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
-      cursor: pointer;
-      pointer-events: auto;
+  }
+  &-trigger {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    cursor: pointer;
+    pointer-events: auto;
+    i {
+      font-size: 22px;
+    }
+    &:hover {
       i {
-        font-size: 22px;
+        color: #82848a;
       }
-      &:hover {
-        i {
-          color: #82848a;
-        }
-      }
-    }
-    &-trigger__right {
-      border-radius: 6px 0 0 6px;
-    }
-    &-trigger__left {
-      border-radius: 0 6px 6px 0;
     }
   }
   &-content {
@@ -161,22 +165,39 @@ $prefixCls: 'hcl-drawer';
   }
 }
 
-.#{$prefixCls}-open {
-  overflow: hidden;
-  & > * {
-    pointer-events: auto;
+.#{$prefixCls}__right {
+  &, .#{$prefixCls}-wrapper {
+    border-radius: 6px 0 0 6px;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
   }
-  .#{$prefixCls}-mask {
-    opacity: .3 !important;
-  }
-  .#{$prefixCls}__right {
-    transition: width 0.5s;
+  .#{$prefixCls}-wrapper {
+    right: 0;
   }
 }
-
-.#{$prefixCls}__right .#{$prefixCls}-wrapper {
-  right: 0;
+.#{$prefixCls}__left {
+  &, .#{$prefixCls}-wrapper {
+    border-radius: 0 6px 6px 0;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  }
+  .#{$prefixCls}-wrapper {
+    left: 0;
+  }
 }
-.#{$prefixCls}__left .#{$prefixCls}-wrapper {
-  left: 0;
+.#{$prefixCls}__top {
+  &, .#{$prefixCls}-wrapper {
+    border-radius: 0 0px 6px 6px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  }
+  .#{$prefixCls}-wrapper {
+    top: 0;
+  }
+}
+.#{$prefixCls}__bottom {
+  &, .#{$prefixCls}-wrapper {
+    border-radius: 0 6px 6px 0;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  }
+  .#{$prefixCls}-wrapper {
+    bottom: 0;
+  }
 }

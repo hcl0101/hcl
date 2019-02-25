@@ -14,7 +14,8 @@
     <div
       class="hcl-drawer-wrapper"
       :style="{
-        width: width + 'px',
+        width: horizontalOrvertical === 'horizontal' ? width + 'px' : '100%',
+        height: horizontalOrvertical === 'vertical' ? width + 'px' : '100%',
         transform: transform,
         transition: 'transform ' + duration / 1000 + 's'
       }">
@@ -34,7 +35,7 @@
         <template>
           <div v-if="showFooter" class="hcl-drawer-footer">
             <button class="btn btn-submit" :loading="loading" @click="submit($event)">确 认</button>
-            <button class="btn btn-cancel" @click="closeDrawer($event)">取 消</button>
+            <button class="btn btn-cancel" @click="cancel($event)">取 消</button>
           </div>
           <slot v-else name="footer"></slot>
         </template>
@@ -44,10 +45,15 @@
         :style="{
           bottom: triggerBottom + 'px',
           left: placement === 'right' ? '-40px' : '',
-          right: placement === 'left' ? '-40px' : ''
+          right: placement === 'left'
+            ? '-40px'
+            : placement === 'top'
+              ? triggerBottom + 'px' : '',
+          top: placement === 'top' ? width + 'px' : '',
+          bottom: placement === 'bottom' ? '-40px' : '',
         }"
-        @click="onHandleClick($event)">
-        <i :class="[ 'iconfont', iconTrigger ]"></i>
+        @click="clickTrigger($event)">
+        <i :class="[ 'iconfont', triggerIcon ]"></i>
       </div>
     </div>
   </div>
@@ -122,7 +128,12 @@ export default {
     },
 
     drawerPlacement() {
-      return this.placement === 'left' ? 'hcl-drawer__left' : 'hcl-drawer__right';
+      return 'hcl-drawer__' + this.placement;
+    },
+
+    horizontalOrvertical() {
+      const reg = new RegExp(this.placement);
+      return 'left,right'.match(reg) ? 'horizontal' : 'vertical';
     },
 
     transform() {
@@ -132,22 +143,37 @@ export default {
         if (this.loading) {
           return '';
         } else {
-          return this.placement === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
+          switch(this.placement) {
+            case 'left':
+              return 'translateX(-100%)';
+            case 'right':
+              return 'translateX(-100%)';
+            case 'top':
+              return 'translateY(-100%)';
+            case 'bottom':
+              return 'translateY(100%)'
+          }
         }
       }
     },
 
     drawerTrigger() {
-      return this.placement === 'right' ? 'hcl-drawer-trigger__right' : 'hcl-drawer-trigger__left';
+      return 'hcl-drawer__' + this.placement;
     },
 
-    iconTrigger() {
+    triggerIcon() {
       if (this.placement === 'right') {
         return this.visible ? 'icon-indent' : 'icon-outdent';
       } else {
         return this.visible ? 'icon-outdent' : 'icon-indent';
       }
-    }
+    },
+
+    // triggerRight() {
+    //   if () {
+
+    //   }
+    // }
   },
 
   watch: {
@@ -167,8 +193,17 @@ export default {
       }
     },
 
+    clickTrigger(event) {
+      if (this.visible) {
+        this.closeDrawer(event);
+      } else {
+        this.openDrawer();
+      }
+    },
+
     openDrawer() {
-      this.$emit('open');
+      this.$emit('update:visible', true);
+      this.$emit('open', event);
     },
 
     closeDrawer(event) {
@@ -179,21 +214,17 @@ export default {
       }, this.duration);
     },
 
-    onHandleClick(event) {
-      if (this.visible) {
-        this.closeDrawer(event);
-      } else {
-        this.openDrawer();
-      }
-    },
-
     submit(event) {
       this.$emit('sumit', event);
+    },
+
+    cancel(event) {
+      this.closeDrawer(event);
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import '../../scss/drawer.scss';
 </style>

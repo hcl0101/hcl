@@ -9,7 +9,11 @@
       width="300"
       show-header
       show-footer
-      :visible.sync="visible">
+      show-trigger
+      placement="bottom"
+      :visible.sync="visible"
+      :trigger-bottom="100"
+      @sumit="submit">
       <div slot="header">header</div>
       <div slot="body">body</div>
       <div slot="footer">footer</div>
@@ -44,6 +48,9 @@ export default {
   methods: {
     handleClick() {
       this.visible = !this.visible;
+    },
+    submit() {
+      this.visible = false;
     }
   }
 }
