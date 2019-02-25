@@ -12,7 +12,7 @@ export default [
       {
         '参数': 'width',
         '说明': '宽度',
-        '类型': 'String | Number',
+        '类型': 'Number | String',
         '可选值': '',
         '默认值': '256'
       },
@@ -22,6 +22,13 @@ export default [
         '类型': 'Boolean',
         '可选值': '', 
         '默认值': 'false'
+      },
+      {
+        '参数': 'duration',
+        '说明': '动画持续时间',
+        '类型': 'Number | String',
+        '可选值': '', 
+        '默认值': 500
       },
       {
         '参数': 'placement',
@@ -46,7 +53,7 @@ export default [
       },
       {
         '参数': 'closable',
-        '说明': '是否显示右上角关闭图标',
+        '说明': '是否显示右上角关闭图标(show-header为true)',
         '类型': 'Boolean',
         '可选值': '',
         '默认值': 'true'
@@ -66,21 +73,7 @@ export default [
         '默认值': 'false'
       },
       {
-        '参数': 'show-footer',
-        '说明': '是否展示footer',
-        '类型': 'Boolean',
-        '可选值': '',
-        '默认值': 'false'
-      },
-      {
-        '参数': 'show-handle',
-        '说明': '是否展示触发器',
-        '类型': 'Boolean',
-        '可选值': '',
-        '默认值': 'false'
-      },
-      {
-        '参数': 'show-handle',
+        '参数': 'show-trigger',
         '说明': '是否展示触发器',
         '类型': 'Boolean',
         '可选值': '',
@@ -113,8 +106,16 @@ export default [
     title: 'slots',
     data: [
       {
-        '名称': '-',
+        '名称': 'header',
+        '说明': '抽屉头部'
+      },
+      {
+        '名称': 'body',
         '说明': '抽屉内容'
+      },
+      {
+        '名称': 'header',
+        '说明': '抽屉底部'
       }
     ]
   },

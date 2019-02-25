@@ -12,46 +12,42 @@
       @click="clickMask($event)">
     </div>
     <div
-      class="hcl-drawer-content-wrapper"
+      class="hcl-drawer-wrapper"
       :style="{
         width: width + 'px',
         transform: transform,
-        transition: 'transform ' + duration + 's'
+        transition: 'transform ' + duration / 1000 + 's'
       }">
       <div class="hcl-drawer-content">
-        <div v-if="showHeader" class="hcl-drawer-header">
-          <div class="hcl-drawer-title">{{ title }}</div>
-        </div>
-        <button v-if="showHeader" aria-label="Close" class="ant-drawer-close" @click="closeDrawer($event)">
-          <span class="iconfont icon-close"></span>
-        </button>
-        <div
-          class="hcl-drawer-body"
-          :style="{
-            height: showFooter ? 'calc(100% - 55px)' : '',
-            overflow: showFooter ? 'auto' : '',
-            paddingBottom: showFooter ? '53px' : ''
-          }">
-          <slot></slot>
-          <div v-if="showFooter" class="hcl-drawer-footer">
-            <el-button
-              size="small"
-              type="primary"
-              :loading="loading"
-              @click="submit($event)">确 认</el-button>
-            <el-button size="small" @click="closeDrawer($event)">取 消</el-button>
+        <template>
+          <div v-if="showHeader" class="hcl-drawer-header">
+            <div class="header-title">{{ title }}</div>
+            <button v-if="closable" class="header-icon__close" @click="closeDrawer($event)">
+              <span class="iconfont icon-close"></span>
+            </button>
           </div>
+          <slot v-else name="header"></slot>
+        </template>
+        <div class="hcl-drawer-body">
+          <slot name="body"></slot>
         </div>
+        <template>
+          <div v-if="showFooter" class="hcl-drawer-footer">
+            <button class="btn btn-submit" :loading="loading" @click="submit($event)">确 认</button>
+            <button class="btn btn-cancel" @click="closeDrawer($event)">取 消</button>
+          </div>
+          <slot v-else name="footer"></slot>
+        </template>
       </div>
-      <div v-if="showHandle"
-        :class="['hcl-drawer-handle', drawerHandle]"
+      <div v-if="showTrigger"
+        :class="['hcl-drawer-trigger', drawerTrigger]"
         :style="{
-          bottom: handleBottom + 'px',
+          bottom: triggerBottom + 'px',
           left: placement === 'right' ? '-40px' : '',
           right: placement === 'left' ? '-40px' : ''
         }"
         @click="onHandleClick($event)">
-        <i :class="[ 'iconfont', iconHandle ]"></i>
+        <i :class="[ 'iconfont', iconTrigger ]"></i>
       </div>
     </div>
   </div>
@@ -80,7 +76,7 @@ export default {
     },
     duration: {
       type: [ Number, String ],
-      default: '0.5'
+      default: 500
     },
     mask: {
       type: Boolean,
@@ -102,11 +98,11 @@ export default {
       type: Boolean,
       default: false
     },
-    showHandle: {
+    showTrigger: {
       type: Boolean,
       default: false
     },
-    handleBottom: {
+    triggerBottom: {
       type: Number,
       default: 26
     },
@@ -126,7 +122,7 @@ export default {
     },
 
     drawerPlacement() {
-      return this.placement === 'left' ? 'hcl-drawer-left' : 'hcl-drawer-right';
+      return this.placement === 'left' ? 'hcl-drawer__left' : 'hcl-drawer__right';
     },
 
     transform() {
@@ -141,11 +137,11 @@ export default {
       }
     },
 
-    drawerHandle() {
-      return this.placement === 'right' ? 'hcl-drawer-handle-right' : 'hcl-drawer-handle-left';
+    drawerTrigger() {
+      return this.placement === 'right' ? 'hcl-drawer-trigger__right' : 'hcl-drawer-trigger__left';
     },
 
-    iconHandle() {
+    iconTrigger() {
       if (this.placement === 'right') {
         return this.visible ? 'icon-indent' : 'icon-outdent';
       } else {
@@ -159,7 +155,7 @@ export default {
       if (!newVal) {
         setTimeout(() => {
           document.getElementsByClassName('hcl-drawer-body')[0].scrollTop = 0;
-        }, this.duration * 1000);
+        }, this.duration);
       }
     }
   },
@@ -180,7 +176,7 @@ export default {
       this.$emit('close', event);
       setTimeout(() => {
         this.$emit('closed', event);
-      }, this.duration * 1000);
+      }, this.duration);
     },
 
     onHandleClick(event) {

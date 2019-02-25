@@ -6,8 +6,13 @@
     </template>
     <hcl-drawer
       title="标题"
+      width="300"
+      show-header
+      show-footer
       :visible.sync="visible">
-      <div>内容...</div>
+      <div slot="header">header</div>
+      <div slot="body">body</div>
+      <div slot="footer">footer</div>
     </hcl-drawer>
   </div>
 </template>
