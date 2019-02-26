@@ -208,5 +208,23 @@ $prefixCls: 'hcl-drawer';
         border-color: #3a8ee6;
       }
     }
+    .btn-loading {
+      background: #66b1ff;
+      border-color: #66b1ff;
+      pointer-events: none;
+      i {
+        display: inline-block;
+        animation: rotating 2s linear infinite;
+      }
+    }
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
   }
 }

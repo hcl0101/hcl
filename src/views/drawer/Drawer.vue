@@ -14,6 +14,7 @@
       placement="right"
       :visible.sync="visible"
       :trigger-bottom="100"
+      :loading="loading"
       @open="open"
       @close="close"
       @closed="closed"
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       visible: false,
+      loading: false,
       apis: API
     }
   },
@@ -63,7 +65,12 @@ export default {
       console.log('closed');
     },
     submit() {
-      this.visible = false;
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+        this.visible = false;
+      }, 1500);
+      
       console.log('submit');
     }
   }

@@ -34,7 +34,10 @@
         </div>
         <template>
           <div v-if="showFooter" class="hcl-drawer-footer">
-            <button class="btn btn-submit" :loading="loading" @click="submit($event)">确 认</button>
+            <button class="btn btn-submit" :class="{ 'btn-loading': loading }" @click="submit($event)">
+              <i v-if="loading" class="iconfont icon-loading"></i>
+              <span>确 认</span>
+            </button>
             <button class="btn btn-cancel" @click="cancel($event)">取 消</button>
           </div>
           <slot v-else name="footer"></slot>
@@ -143,19 +146,15 @@ export default {
       if (this.visible) {
         return '';
       } else {
-        if (this.loading) {
-          return '';
-        } else {
-          switch(this.placement) {
-            case 'left':
-              return 'translateX(-100%)';
-            case 'right':
-              return 'translateX(100%)';
-            case 'top':
-              return 'translateY(-100%)';
-            case 'bottom':
-              return 'translateY(100%)'
-          }
+        switch(this.placement) {
+          case 'left':
+            return 'translateX(-100%)';
+          case 'right':
+            return 'translateX(100%)';
+          case 'top':
+            return 'translateY(-100%)';
+          case 'bottom':
+            return 'translateY(100%)'
         }
       }
     },
