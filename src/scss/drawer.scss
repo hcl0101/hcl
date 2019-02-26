@@ -24,6 +24,52 @@ $prefixCls: 'hcl-drawer';
       transition: width 0.5s;
     }
   }
+  &.#{$prefixCls}__right {
+    .#{$prefixCls}-wrapper {
+      right: 0;
+      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+    }
+    .#{$prefixCls}-trigger {
+      border-radius: 6px 0 0 6px;
+      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+  &.#{$prefixCls}__left {
+    .#{$prefixCls}-wrapper {
+      left: 0;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    }
+    .#{$prefixCls}-trigger {
+      border-radius: 0 6px 6px 0;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+  &.#{$prefixCls}__top {
+    .#{$prefixCls}-wrapper {
+      top: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    .#{$prefixCls}-trigger {
+      border-radius: 0 0px 6px 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    i {
+      transform: rotate(90deg);
+    }
+  }
+  &.#{$prefixCls}__bottom {
+    .#{$prefixCls}-wrapper {
+      bottom: 0;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+    }
+    .#{$prefixCls}-trigger {
+      border-radius: 6px 6px 0 0;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+    }
+    i {
+      transform: rotate(-90deg);
+    }
+  }
   &-mask {
     position: fixed;
     top: 0;
@@ -162,42 +208,5 @@ $prefixCls: 'hcl-drawer';
         border-color: #3a8ee6;
       }
     }
-  }
-}
-
-.#{$prefixCls}__right {
-  &, .#{$prefixCls}-wrapper {
-    border-radius: 6px 0 0 6px;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
-  }
-  .#{$prefixCls}-wrapper {
-    right: 0;
-  }
-}
-.#{$prefixCls}__left {
-  &, .#{$prefixCls}-wrapper {
-    border-radius: 0 6px 6px 0;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-  }
-  .#{$prefixCls}-wrapper {
-    left: 0;
-  }
-}
-.#{$prefixCls}__top {
-  &, .#{$prefixCls}-wrapper {
-    border-radius: 0 0px 6px 6px;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-  }
-  .#{$prefixCls}-wrapper {
-    top: 0;
-  }
-}
-.#{$prefixCls}__bottom {
-  &, .#{$prefixCls}-wrapper {
-    border-radius: 0 6px 6px 0;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-  }
-  .#{$prefixCls}-wrapper {
-    bottom: 0;
   }
 }

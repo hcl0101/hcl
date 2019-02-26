@@ -10,9 +10,10 @@
       show-header
       show-footer
       show-trigger
-      placement="bottom"
+      placement="top"
       :visible.sync="visible"
       :trigger-bottom="100"
+      :trigger-right="100"
       @sumit="submit">
       <div slot="header">header</div>
       <div slot="body">body</div>

@@ -14,8 +14,8 @@
     <div
       class="hcl-drawer-wrapper"
       :style="{
-        width: horizontalOrvertical === 'horizontal' ? width + 'px' : '100%',
-        height: horizontalOrvertical === 'vertical' ? width + 'px' : '100%',
+        width: horizontalOrvertical === 'vertical' ? width + 'px' : '100%',
+        height: horizontalOrvertical === 'horizontal' ? width + 'px' : '100%',
         transform: transform,
         transition: 'transform ' + duration / 1000 + 's'
       }">
@@ -40,17 +40,16 @@
           <slot v-else name="footer"></slot>
         </template>
       </div>
-      <div v-if="showTrigger"
-        :class="['hcl-drawer-trigger', drawerTrigger]"
+      <div v-if="showTrigger" :class="['hcl-drawer-trigger', drawerTrigger]"
         :style="{
-          bottom: triggerBottom + 'px',
-          left: placement === 'right' ? '-40px' : '',
-          right: placement === 'left'
-            ? '-40px'
-            : placement === 'top'
-              ? triggerBottom + 'px' : '',
-          top: placement === 'top' ? width + 'px' : '',
-          bottom: placement === 'bottom' ? '-40px' : '',
+          right: horizontalOrvertical === 'horizontal'
+            ? triggerRight + 'px'
+            : placement === 'left' ? '-40px' : '',
+          bottom: horizontalOrvertical === 'vertical'
+            ? triggerBottom + 'px'
+            : placement === 'top' ? '-40px' : 0,
+          left: horizontalOrvertical === 'vertical' && placement === 'right' ? '-40px' : '',
+          top: horizontalOrvertical === 'horizontal' && placement === 'bottom' ? '-40px' : ''
         }"
         @click="clickTrigger($event)">
         <i :class="[ 'iconfont', triggerIcon ]"></i>
@@ -112,6 +111,10 @@ export default {
       type: Number,
       default: 26
     },
+    triggerRight: {
+      type: Number,
+      default: 26
+    },
     loading: {
       type: Boolean,
       default: false
@@ -133,7 +136,7 @@ export default {
 
     horizontalOrvertical() {
       const reg = new RegExp(this.placement);
-      return 'left,right'.match(reg) ? 'horizontal' : 'vertical';
+      return 'left,right'.match(reg) ? 'vertical' : 'horizontal';
     },
 
     transform() {
@@ -147,7 +150,7 @@ export default {
             case 'left':
               return 'translateX(-100%)';
             case 'right':
-              return 'translateX(-100%)';
+              return 'translateX(100%)';
             case 'top':
               return 'translateY(-100%)';
             case 'bottom':
@@ -167,13 +170,7 @@ export default {
       } else {
         return this.visible ? 'icon-outdent' : 'icon-indent';
       }
-    },
-
-    // triggerRight() {
-    //   if () {
-
-    //   }
-    // }
+    }
   },
 
   watch: {
