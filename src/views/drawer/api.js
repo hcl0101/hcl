@@ -3,6 +3,13 @@ export default [
     title: 'Attributes',
     data: [
       {
+        '参数': 'visible',
+        '说明': '是否可见',
+        '类型': 'Boolean',
+        '可选值': '', 
+        '默认值': 'false'
+      },
+      {
         '参数': 'title',
         '说明': '标题',
         '类型': 'String',
@@ -15,13 +22,6 @@ export default [
         '类型': 'Number | String',
         '可选值': '',
         '默认值': '256'
-      },
-      {
-        '参数': 'visible',
-        '说明': '是否可见',
-        '类型': 'Boolean',
-        '可选值': '', 
-        '默认值': 'false'
       },
       {
         '参数': 'duration',
@@ -57,6 +57,13 @@ export default [
         '类型': 'Boolean',
         '可选值': '',
         '默认值': 'true'
+      },
+      {
+        '参数': 'destroyOnClose',
+        '说明': '是否在关闭时销毁body中的元素',
+        '类型': 'Boolean',
+        '可选值': 'true | false',
+        '默认值': 'false'
       },
       {
         '参数': 'show-header',

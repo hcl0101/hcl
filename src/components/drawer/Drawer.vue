@@ -19,7 +19,7 @@
         transform: transform,
         transition: 'transform ' + duration / 1000 + 's'
       }">
-      <div class="hcl-drawer-content">
+      <div v-if="!hasDestroyed" class="hcl-drawer-content">
         <template>
           <div v-if="showHeader" class="hcl-drawer-header">
             <div class="header-title">{{ title }}</div>
@@ -66,6 +66,10 @@ export default {
   name: 'hclDrawer',
 
   props: {
+    visible: {
+      type: Boolean,
+      default: false
+    },
     title: {
       type: String,
       default: '标题'
@@ -77,10 +81,6 @@ export default {
     placement: {
       type: String,
       default: 'right'
-    },
-    visible: {
-      type: Boolean,
-      default: false
     },
     duration: {
       type: [ Number, String ],
@@ -125,6 +125,16 @@ export default {
     drawerClass: {
       type: String,
       default: ''
+    },
+    destroyOnClose: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  data() {
+    return {
+      hasDestroyed: false
     }
   },
 
@@ -176,8 +186,11 @@ export default {
     visible(newVal) {
       if (!newVal) {
         setTimeout(() => {
-          document.getElementsByClassName('hcl-drawer-body')[0].scrollTop = 0;
+          document.getElementsByClassName('hcl-drawer-body')[0].scrollTop = 0;  //滚动条回到顶部
+          this.hasDestroyed = this.destroyOnClose;
         }, this.duration);
+      } else {
+        this.hasDestroyed = false;
       }
     }
   },

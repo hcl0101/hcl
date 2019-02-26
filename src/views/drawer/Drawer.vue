@@ -11,6 +11,7 @@
       show-header
       show-footer
       show-trigger
+      destroyOnClose
       placement="right"
       :visible.sync="visible"
       :trigger-bottom="100"
