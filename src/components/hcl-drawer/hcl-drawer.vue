@@ -213,6 +213,9 @@ export default {
 
     submit(event) {
       this.$emit('sumit', event);
+      setTimeout(() => {
+        this.$emit('closed', event);
+      }, this.duration);
     },
 
     cancel(event) {

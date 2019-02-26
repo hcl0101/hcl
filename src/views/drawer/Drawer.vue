@@ -14,6 +14,9 @@
       :visible.sync="visible"
       :trigger-bottom="100"
       :trigger-right="100"
+      @open="open"
+      @close="close"
+      @closed="closed"
       @sumit="submit">
       <div slot="header">header</div>
       <div slot="body">body</div>
@@ -50,8 +53,18 @@ export default {
     handleClick() {
       this.visible = !this.visible;
     },
+    open() {
+      console.log('open');
+    },
+    close() {
+      console.log('close');
+    },
+    closed() {
+      console.log('closed');
+    },
     submit() {
       this.visible = false;
+      console.log('submit');
     }
   }
 }

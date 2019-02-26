@@ -34,7 +34,7 @@ export default [
         '参数': 'placement',
         '说明': '方向',
         '类型': 'String',
-        '可选值': 'right | left',
+        '可选值': 'right | left | top | bottom',
         '默认值': 'right'
       },
       {
