@@ -7,13 +7,13 @@
     <hcl-drawer
       title="标题"
       width="300"
+      closable
       show-header
       show-footer
       show-trigger
-      placement="top"
+      placement="right"
       :visible.sync="visible"
       :trigger-bottom="100"
-      :trigger-right="100"
       @open="open"
       @close="close"
       @closed="closed"
