@@ -63,7 +63,7 @@
 
 <script>
 export default {
-  name: 'Drawer',
+  name: 'hclDrawer',
 
   props: {
     title: {

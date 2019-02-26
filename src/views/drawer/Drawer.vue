@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import hclDrawer from '@/components/hcl-drawer/hcl-drawer';
+import hclDrawer from '@/components/drawer/Drawer';
 import Table from '@/views/Table';
 import API from './api';
 
