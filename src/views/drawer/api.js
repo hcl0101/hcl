@@ -84,14 +84,14 @@ export default [
         '说明': '触发器距离底部的距离',
         '类型': 'Number | String',
         '可选值': '',
-        '默认值': '26'
+        '默认值': '100'
       },
       {
         '参数': 'loading',
         '说明': '加载中(show-footer为true)',
         '类型': 'Number | String',
         '可选值': '',
-        '默认值': '26'
+        '默认值': '100'
       },
       {
         '参数': 'drawer-class',

@@ -112,11 +112,11 @@ export default {
     },
     triggerBottom: {
       type: Number,
-      default: 26
+      default: 100
     },
     triggerRight: {
       type: Number,
-      default: 26
+      default: 100
     },
     loading: {
       type: Boolean,
