@@ -12,12 +12,12 @@ $prefixCls: 'hcl-drawer';
   > * {
     transition: transform 0.5s;
   }
-  &.#{$prefixCls}-open {
+  &.#{$prefixCls}--open {
     overflow: hidden;
     & > * {
       pointer-events: auto;
     }
-    .#{$prefixCls}-mask {
+    .#{$prefixCls}__mask {
       opacity: .3 !important;
     }
     .#{$prefixCls}__right {
@@ -25,31 +25,31 @@ $prefixCls: 'hcl-drawer';
     }
   }
   &.#{$prefixCls}__right {
-    .#{$prefixCls}-wrapper {
+    .#{$prefixCls}__wrapper {
       right: 0;
       box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
     }
-    .#{$prefixCls}-trigger {
+    .#{$prefixCls}__trigger {
       border-radius: 6px 0 0 6px;
       box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
     }
   }
   &.#{$prefixCls}__left {
-    .#{$prefixCls}-wrapper {
+    .#{$prefixCls}__wrapper {
       left: 0;
       box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
     }
-    .#{$prefixCls}-trigger {
+    .#{$prefixCls}__trigger {
       border-radius: 0 6px 6px 0;
       box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
     }
   }
   &.#{$prefixCls}__top {
-    .#{$prefixCls}-wrapper {
+    .#{$prefixCls}__wrapper {
       top: 0;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
-    .#{$prefixCls}-trigger {
+    .#{$prefixCls}__trigger {
       border-radius: 0 0px 6px 6px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
@@ -58,11 +58,11 @@ $prefixCls: 'hcl-drawer';
     }
   }
   &.#{$prefixCls}__bottom {
-    .#{$prefixCls}-wrapper {
+    .#{$prefixCls}__wrapper {
       bottom: 0;
       box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
     }
-    .#{$prefixCls}-trigger {
+    .#{$prefixCls}__trigger {
       border-radius: 6px 6px 0 0;
       box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
     }
@@ -70,7 +70,7 @@ $prefixCls: 'hcl-drawer';
       transform: rotate(-90deg);
     }
   }
-  &-mask {
+  &__mask {
     position: fixed;
     top: 0;
     right: 0;
@@ -81,12 +81,12 @@ $prefixCls: 'hcl-drawer';
     background-color: rgba(0, 0, 0, 0.65);
     transition: opacity 0.5s;
   }
-  &-wrapper {
+  &__wrapper {
     position: absolute;
     height: 100%;
     background: #fff;
   }
-  &-trigger {
+  &__trigger {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -107,18 +107,18 @@ $prefixCls: 'hcl-drawer';
       }
     }
   }
-  &-content {
+  &__content {
     display: flex;
     flex-direction: column;
     height: 100%;
-    .#{$prefixCls}-header {
+    .#{$prefixCls}__header {
       padding: 14px 24px;
       border-radius: 4px 4px 0 0;
       background: #fff;
       color: rgba(0, 0, 0, 0.65);
       border-bottom: 1px solid #e8e8e8;
     }
-    .#{$prefixCls}-body {
+    .#{$prefixCls}__body {
       flex: 1;
       padding: 24px;
       font-size: 14px;
@@ -126,7 +126,7 @@ $prefixCls: 'hcl-drawer';
       word-wrap: break-word;
       overflow: auto;
     }
-    .#{$prefixCls}-footer {
+    .#{$prefixCls}__footer {
       border-top: 1px solid rgb(232, 232, 232);
       padding: 10px 16px;
       text-align: right;
@@ -136,15 +136,15 @@ $prefixCls: 'hcl-drawer';
       z-index: 100;
     }
   }
-  &-header {
-    .header-title {
+  &__header {
+    .header__title {
       margin: 0;
       font-size: 16px;
       font-weight: 700;
       line-height: 22px;
       color: rgba(0, 0, 0, 0.85);
     }
-    .header-icon__close {
+    .header__icon--close {
       cursor: pointer;
       border: 0;
       background: transparent;
@@ -173,7 +173,7 @@ $prefixCls: 'hcl-drawer';
       }
     }
   }
-  &-footer {
+  &__footer {
     .btn {
       padding: 7px 15px;
       font-size: 14px;
@@ -181,7 +181,7 @@ $prefixCls: 'hcl-drawer';
       text-align: center;
       cursor: pointer;
     }
-    .btn-submit {
+    .btn--submit {
       color: #fff;
       background-color: #409EFF;
       border-color: #409EFF;
@@ -194,7 +194,7 @@ $prefixCls: 'hcl-drawer';
         border-color: #3a8ee6;
       }
     }
-    .btn-cancel {
+    .btn--cancel {
       margin-left: 10px;
       color: #606266;
       border: 1px solid #dcdfe6;
@@ -208,7 +208,7 @@ $prefixCls: 'hcl-drawer';
         border-color: #3a8ee6;
       }
     }
-    .btn-loading {
+    .btn--loading {
       background: #66b1ff;
       border-color: #66b1ff;
       pointer-events: none;

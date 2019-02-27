@@ -7,43 +7,43 @@
       drawerClass
     ]">
     <div
-      class="hcl-drawer-mask"
+      class="hcl-drawer__mask"
       :style="{ background: mask ? '' : 'inherit' }"
       @click="clickMask($event)">
     </div>
     <div
-      class="hcl-drawer-wrapper"
+      class="hcl-drawer__wrapper"
       :style="{
         width: horizontalOrvertical === 'vertical' ? width + 'px' : '100%',
         height: horizontalOrvertical === 'horizontal' ? width + 'px' : '100%',
         transform: transform,
         transition: 'transform ' + duration / 1000 + 's'
       }">
-      <div v-if="!hasDestroyed" class="hcl-drawer-content">
+      <div v-if="!hasDestroyed" class="hcl-drawer__content">
         <template>
-          <div v-if="showHeader" class="hcl-drawer-header">
-            <div class="header-title">{{ title }}</div>
-            <button v-if="closable" class="header-icon__close" @click="closeDrawer($event)">
+          <div v-if="showHeader" class="hcl-drawer__header">
+            <div class="header__title">{{ title }}</div>
+            <button v-if="closable" class="header__icon--close" @click="closeDrawer($event)">
               <span class="iconfont icon-close"></span>
             </button>
           </div>
           <slot v-else name="header"></slot>
         </template>
-        <div class="hcl-drawer-body">
+        <div class="hcl-drawer__body">
           <slot name="body"></slot>
         </div>
         <template>
-          <div v-if="showFooter" class="hcl-drawer-footer">
-            <button class="btn btn-submit" :class="{ 'btn-loading': loading }" @click="submit($event)">
+          <div v-if="showFooter" class="hcl-drawer__footer">
+            <button class="btn btn--submit" :class="{ 'btn--loading': loading }" @click="submit($event)">
               <i v-if="loading" class="iconfont icon-loading"></i>
               <span>确 认</span>
             </button>
-            <button class="btn btn-cancel" @click="cancel($event)">取 消</button>
+            <button class="btn btn--cancel" @click="cancel($event)">取 消</button>
           </div>
           <slot v-else name="footer"></slot>
         </template>
       </div>
-      <div v-if="showTrigger" :class="['hcl-drawer-trigger', drawerTrigger]"
+      <div v-if="showTrigger" :class="['hcl-drawer__trigger', drawerTrigger]"
         :style="{
           right: horizontalOrvertical === 'horizontal'
             ? triggerRight + 'px'
@@ -140,7 +140,7 @@ export default {
 
   computed: {
     drawerVisible() {
-      return this.visible ? 'hcl-drawer-open' : '';
+      return this.visible ? 'hcl-drawer--open' : '';
     },
 
     drawerPlacement() {
@@ -186,7 +186,7 @@ export default {
     visible(newVal) {
       if (!newVal) {
         setTimeout(() => {
-          document.getElementsByClassName('hcl-drawer-body')[0].scrollTop = 0;  //滚动条回到顶部
+          // document.getElementsByClassName('hcl-drawer-body')[0].scrollTop = 0;  //滚动条回到顶部
           this.hasDestroyed = this.destroyOnClose;
         }, this.duration);
       } else {
@@ -238,5 +238,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '../../scss/drawer.scss';
+  @import '../../styles/components/drawer.scss';
 </style>
