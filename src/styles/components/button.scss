@@ -1,0 +1,20 @@
+$prefixCls: 'hcl-button';
+
+.#{$prefixCls} {
+  display: inline-block;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  border-color: #dcdfe6;
+  color: #606266;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  &--primary {
+    color: #fff;
+    background-color: #409EFF;
+    border-color: #409EFF;
+  }
+}
