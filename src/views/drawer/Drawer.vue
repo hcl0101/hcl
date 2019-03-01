@@ -13,9 +13,9 @@
       show-trigger
       destroyOnClose
       placement="right"
-      :visible.sync="visible"
       :trigger-bottom="100"
-      :loading="loading"
+      :visible.sync="visible"
+      :loading.sync="loading"
       @open="open"
       @close="close"
       @closed="closed"
@@ -70,7 +70,7 @@ export default {
       setTimeout(() => {
         this.loading = false;
         this.visible = false;
-      }, 1500);
+      }, 150000);
       
       console.log('submit');
     }

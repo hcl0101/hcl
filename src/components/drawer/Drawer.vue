@@ -34,11 +34,8 @@
         </div>
         <template>
           <div v-if="showFooter" class="hcl-drawer__footer">
-            <button class="btn btn--submit" :class="{ 'btn--loading': loading }" @click="submit($event)">
-              <i v-if="loading" class="iconfont icon-loading"></i>
-              <span>确 认</span>
-            </button>
-            <button class="btn btn--cancel" @click="cancel($event)">取 消</button>
+            <hcl-button type="primary" :loading="loading" @click.native="submit($event)">确认</hcl-button>
+            <hcl-button type="default" @click.native="cancel($event)">取 消</hcl-button>
           </div>
           <slot v-else name="footer"></slot>
         </template>
@@ -62,8 +59,14 @@
 </template>
 
 <script>
+import hclButton from '../button/Button';
+
 export default {
   name: 'hclDrawer',
+
+  components: {
+    hclButton
+  },
 
   props: {
     visible: {
@@ -220,6 +223,9 @@ export default {
       this.$emit('close', event);
       setTimeout(() => {
         this.$emit('closed', event);
+        if (this.loading = true) {
+          this.$emit('update:loading', false);
+        }
       }, this.duration);
     },
 

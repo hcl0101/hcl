@@ -3,11 +3,14 @@
     :disabled="disabled"
     :class="[
       'hcl-button',
-      { 'is-loading': loading },
       btnType,
-      btnSize
+      btnSize,
+      { 'is-loading': loading },
     ]">
-    <span></span>
+    <i v-if="loading" class="iconfont icon-loading"></i>
+    <span>
+      <slot></slot>
+    </span>
   </button>
 </template>
 
@@ -42,3 +45,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  @import '../../styles/components/button.scss';
+</style>
