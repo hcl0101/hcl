@@ -174,48 +174,8 @@ $prefixCls: 'hcl-drawer';
     }
   }
   &__footer {
-    .btn {
-      padding: 7px 15px;
-      font-size: 14px;
-      border-radius: 4px;
-      text-align: center;
-      cursor: pointer;
-    }
-    .btn--submit {
-      color: #fff;
-      background-color: #409EFF;
-      border-color: #409EFF;
-      &:hover {
-        background: #66b1ff;
-        border-color: #66b1ff;
-      }
-      &:active {
-        background: #3a8ee6;
-        border-color: #3a8ee6;
-      }
-    }
-    .btn--cancel {
+    .hcl-button + .hcl-button {
       margin-left: 10px;
-      color: #606266;
-      border: 1px solid #dcdfe6;
-      &:hover {
-        color: #409eff;
-        border-color: #c6e2ff;
-        background-color: #ecf5ff;
-      }
-      &:active {
-        color: #3a8ee6;
-        border-color: #3a8ee6;
-      }
-    }
-    .btn--loading {
-      background: #66b1ff;
-      border-color: #66b1ff;
-      pointer-events: none;
-      i {
-        display: inline-block;
-        animation: rotating 2s linear infinite;
-      }
     }
   }
 }

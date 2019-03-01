@@ -1,20 +1,37 @@
 $prefixCls: 'hcl-button';
 
 .#{$prefixCls} {
-  display: inline-block;
-  white-space: nowrap;
-  background: #fff;
-  border: 1px solid #dcdfe6;
-  border-color: #dcdfe6;
-  color: #606266;
-  text-align: center;
-  padding: 12px 20px;
+  padding: 7px 15px;
   font-size: 14px;
   border-radius: 4px;
+  text-align: center;
   cursor: pointer;
+  &--default {
+    color: #606266;
+    border: 1px solid #dcdfe6;
+    &:hover {
+      color: #409eff;
+      border-color: #c6e2ff;
+      background-color: #ecf5ff;
+    }
+    &:active {
+      color: #3a8ee6;
+      border-color: #3a8ee6;
+    }
+  }
   &--primary {
     color: #fff;
     background-color: #409EFF;
     border-color: #409EFF;
+    &:hover {
+      color: #fff;
+      background: #66b1ff;
+      border-color: #66b1ff;
+    }
+    &:active {
+      color: #fff;
+      background: #3a8ee6;
+      border-color: #3a8ee6;
+    }
   }
 }
