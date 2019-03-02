@@ -223,7 +223,7 @@ export default {
       this.$emit('close', event);
       setTimeout(() => {
         this.$emit('closed', event);
-        if (this.loading = true) {
+        if (this.loading) {
           this.$emit('update:loading', false);
         }
       }, this.duration);

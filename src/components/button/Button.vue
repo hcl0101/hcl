@@ -16,6 +16,8 @@
 
 <script>
 export default {
+  name: 'hclButton',
+
   props: {
     type: {
       type: String,
@@ -45,7 +47,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  @import '../../styles/components/button.scss';
-</style>

@@ -28,13 +28,11 @@
 </template>
 
 <script>
-import hclDrawer from '@/components/drawer/Drawer';
 import Table from '@/views/Table';
 import API from './api';
 
 export default {
   components: {
-    hclDrawer,
     Table
   },
 
@@ -70,7 +68,7 @@ export default {
       setTimeout(() => {
         this.loading = false;
         this.visible = false;
-      }, 150000);
+      }, 1500);
       
       console.log('submit');
     }
