@@ -25,6 +25,7 @@
       return {
         active: '/drawer',
         menu: [
+          { index: '/button', title: '按钮' },
           { index: '/drawer', title: '抽屉' },
           { index: '/directory', title: '目录' },
         ]

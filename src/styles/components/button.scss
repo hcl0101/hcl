@@ -6,6 +6,9 @@ $prefixCls: 'hcl-button';
   border-radius: 4px;
   text-align: center;
   cursor: pointer;
+  &+& {
+    margin-left: 10px;
+  }
   &--default {
     color: #606266;
     border: 1px solid #dcdfe6;

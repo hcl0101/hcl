@@ -14,6 +14,11 @@ export default new Router({
       component: Home,
       children: [
         {
+          path: "/button",
+          name: "button",
+          component: () => import("./views/button/Button.vue")
+        },
+        {
           path: "/drawer",
           name: "drawer",
           component: () => import("./views/drawer/Drawer.vue")
