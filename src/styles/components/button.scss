@@ -4,7 +4,9 @@ $prefixCls: 'hcl-button';
   padding: 7px 15px;
   font-size: 14px;
   border-radius: 4px;
+  line-height: 1;
   text-align: center;
+  transition: .3s;
   cursor: pointer;
   &+& {
     margin-left: 10px;
@@ -25,16 +27,16 @@ $prefixCls: 'hcl-button';
   &--primary {
     color: #fff;
     background-color: #409EFF;
-    border-color: #409EFF;
+    border: 1px solid #409EFF;
     &:hover {
       color: #fff;
       background: #66b1ff;
-      border-color: #66b1ff;
+      border: 1px solid #66b1ff;
     }
     &:active {
       color: #fff;
       background: #3a8ee6;
-      border-color: #3a8ee6;
+      border: 1px solid #3a8ee6;
     }
   }
 }
