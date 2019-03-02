@@ -3,7 +3,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import './styles/index.scss';
+import "./styles/index.scss";
+
+import hcl from "./components/index";
+
+hcl.install(Vue);
 
 Vue.config.productionTip = false;
 
