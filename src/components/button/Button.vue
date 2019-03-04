@@ -6,10 +6,10 @@
       btnType,
       btnSize,
       { 'hcl-button--dashed': dashed },
-      { 'is-loading': loading },
-      { 'is-disabled': disabled }
+      { 'is-loading': loading }
     ]">
-    <i v-if="loading" class="iconfont icon-loading"></i>
+    <i class="iconfont icon-loading" v-if="loading"></i>
+    <i :class="icon" v-if="icon && !loading"></i>
     <span>
       <slot></slot>
     </span>
@@ -36,6 +36,10 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    icon: {
+      type: String,
+      default: ''
     },
     disabled: {
       type: Boolean,

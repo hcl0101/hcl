@@ -35,6 +35,20 @@
         <hcl-button type="success" disabled>成功按钮</hcl-button>
         <hcl-button type="danger" disabled>危险按钮</hcl-button>
       </div>
+      <h4>图标</h4>
+      <div class="demo-container">
+        <hcl-button type="primary" loading>加载中</hcl-button>
+        <hcl-button type="primary" icon="iconfont icon-loading">上一页</hcl-button>
+        <hcl-button type="primary">
+          下一页
+          <i class="iconfont icon-loading"></i>
+        </hcl-button>
+      </div>
+      <h4>文字</h4>
+      <div class="demo-container">
+        <hcl-button type="text">文字按钮</hcl-button>
+        <hcl-button type="text" disabled>文字按钮</hcl-button>
+      </div>
     </div>
     
     <div>
