@@ -38,16 +38,6 @@
 </script>
 
 <style lang="scss" scoped>
-  h3 {
-    display: inline-block;
-    margin: 30px 0 20px;
-    font-size: 22px;
-    font-weight: 400;
-    color: #1f2f3d;
-    text-indent: 8px;
-    vertical-align: top;
-    border-left: 2px solid #f56c6c;
-  }
   table {
     width: 100%;
     font-size: 14px;

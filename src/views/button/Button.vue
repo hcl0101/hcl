@@ -1,9 +1,42 @@
 <template>
   <div>
+    <h3>用法</h3>
     <div>
-      <hcl-button>默认</hcl-button>
-      <hcl-button type="primary">主要</hcl-button>
+      <h4>基础</h4>
+      <div class="demo-container">
+        <div class="btn-container">
+          <hcl-button size="large">默认按钮</hcl-button>
+          <hcl-button size="medium">默认按钮</hcl-button>
+          <hcl-button size="small">默认按钮</hcl-button>
+          <hcl-button size="large" dashed>默认按钮</hcl-button>
+          <hcl-button size="medium" dashed>默认按钮</hcl-button>
+          <hcl-button size="small" dashed>默认按钮</hcl-button>
+        </div>
+        <div class="btn-container">
+          <hcl-button type="primary" size="large">主要按钮</hcl-button>
+          <hcl-button type="primary" size="medium">主要按钮</hcl-button>
+          <hcl-button type="primary" size="small">主要按钮</hcl-button>
+        </div>
+        <div class="btn-container">
+          <hcl-button type="success" size="large">成功按钮</hcl-button>
+          <hcl-button type="success" size="medium">成功按钮</hcl-button>
+          <hcl-button type="success" size="small">成功按钮</hcl-button>
+        </div>
+        <div class="btn-container">
+          <hcl-button type="danger" size="large">危险按钮</hcl-button>
+          <hcl-button type="danger" size="medium">危险按钮</hcl-button>
+          <hcl-button type="danger" size="small">危险按钮</hcl-button>
+        </div>
+      </div>
+      <h4>禁用</h4>
+      <div class="demo-container">
+        <hcl-button disabled>默认按钮</hcl-button>
+        <hcl-button type="primary" disabled>主要按钮</hcl-button>
+        <hcl-button type="success" disabled>成功按钮</hcl-button>
+        <hcl-button type="danger" disabled>危险按钮</hcl-button>
+      </div>
     </div>
+    
     <div>
       <template v-for="(api, index) in apis">
         <Table :key="index" :title="api.title" :data="api.data"></Table>
@@ -28,3 +61,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .btn-container {
+    margin-bottom: 15px;
+  }
+</style>

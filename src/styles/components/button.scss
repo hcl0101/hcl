@@ -1,15 +1,25 @@
 $prefixCls: 'hcl-button';
 
 .#{$prefixCls} {
-  padding: 7px 15px;
-  font-size: 14px;
-  border-radius: 4px;
   line-height: 1;
+  font-weight: 400;
+  border-radius: 4px;
   text-align: center;
+  white-space: nowrap;
   transition: .3s;
   cursor: pointer;
   &+& {
     margin-left: 10px;
+  }
+  &--dashed {
+    border-style: dashed;
+  }
+  &+.is-disabled {
+    color: #c0c4cc;
+    background-image: none;
+    background-color: #fff;
+    border-color: #ebeef5;
+    cursor: not-allowed;
   }
   &--default {
     color: #606266;
@@ -38,5 +48,50 @@ $prefixCls: 'hcl-button';
       background: #3a8ee6;
       border: 1px solid #3a8ee6;
     }
+  }
+  &--success {
+    color: #fff;
+    background-color: #67c23a;
+    border: 1px solid #67c23a;
+    &:hover {
+      color: #fff;
+      background: #85ce61;
+      border: 1px solid #85ce61;
+    }
+    &:active {
+      color: #fff;
+      background: #5daf34;
+      border: 1px solid #5daf34;
+    }
+  }
+  &--danger {
+    color: #fff;
+    background-color: #f56c6c;
+    border: 1px solid #f56c6c;
+    &:hover {
+      color: #fff;
+      background: #f78989;
+      border: 1px solid #f78989;
+    }
+    &:active {
+      color: #fff;
+      background: #dd6161;
+      border: 1px solid #dd6161;
+    }
+  }
+  &--large {
+    height: 40px;
+    padding: 0 15px;
+    font-size: 16px;
+  }
+  &--medium {
+    height: 32px;
+    padding: 0 15px;
+    font-size: 14px;
+  }
+  &--small {
+    height: 24px;
+    padding: 0 7px;
+    font-size: 14px;
   }
 }
