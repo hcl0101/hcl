@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h3>注</h3>
+      <p>因element用户较多，故以下配色采用element</p>
     <h3>用法</h3>
     <div>
       <h4>基础</h4>
@@ -77,6 +79,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  p {
+    text-indent: 27px;
+  }
   .btn-container {
     margin-bottom: 15px;
   }
