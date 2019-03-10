@@ -22,6 +22,10 @@ export default new Router({
           name: "drawer",
           component: () => import("./views/drawer/Drawer.vue")
         }, {
+          path: "/contextMenu",
+          name: "contextMenu",
+          component: () => import("./views/contextMenu/contextMenu.vue")
+        }, {
           path: "/directory",
           name: "directory",
           component: () => import("./views/directory/Directory.vue")

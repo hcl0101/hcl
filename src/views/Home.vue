@@ -27,6 +27,7 @@
         menu: [
           { index: '/button', title: '按钮' },
           { index: '/drawer', title: '抽屉' },
+          { index: '/contextMenu', title: '右键菜单' },
           { index: '/directory', title: '目录' },
         ]
       }
