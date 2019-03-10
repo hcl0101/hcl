@@ -242,7 +242,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  @import '../../styles/components/drawer.scss';
-</style>

@@ -1,9 +1,11 @@
 import Button from "./button/index.js";
 import Drawer from "./drawer/index.js";
+import Directory from "./directory/index.js";
 
 const components = [
   Button,
-  Drawer
+  Drawer,
+  Directory
 ];
 
 components.install = function(Vue) {

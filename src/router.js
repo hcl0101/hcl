@@ -17,11 +17,14 @@ export default new Router({
           path: "/button",
           name: "button",
           component: () => import("./views/button/Button.vue")
-        },
-        {
+        }, {
           path: "/drawer",
           name: "drawer",
           component: () => import("./views/drawer/Drawer.vue")
+        }, {
+          path: "/directory",
+          name: "directory",
+          component: () => import("./views/directory/Directory.vue")
         },
       ]
     }
