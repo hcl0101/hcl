@@ -8,6 +8,13 @@
 export default {
   name: 'hclContextMenu',
 
+  props: {
+    context: {
+      type: Array,
+      default: () => []
+    }
+  },
+
   data() {
     return {
 
