@@ -1,5 +1,5 @@
 <template>
-  <div
+  <div v-transfer-dom
     :class="[
       'hcl-drawer',
       drawerPlacement,
@@ -59,10 +59,15 @@
 </template>
 
 <script>
-import hclButton from '../button/Button';
+import TransferDom from "@/directives/transfer-dom.js";
+import hclButton from "../button/Button";
 
 export default {
-  name: 'hclDrawer',
+  name: "hclDrawer",
+
+  directives: {
+    TransferDom
+  },
 
   components: {
     hclButton
@@ -75,18 +80,18 @@ export default {
     },
     title: {
       type: String,
-      default: '标题'
+      default: "标题"
     },
     width: {
-      type: [ Number, String ],
+      type: [Number, String],
       default: 256
     },
     placement: {
       type: String,
-      default: 'right'
+      default: "right"
     },
     duration: {
-      type: [ Number, String ],
+      type: [Number, String],
       default: 500
     },
     mask: {
@@ -127,7 +132,7 @@ export default {
     },
     drawerClass: {
       type: String,
-      default: ''
+      default: ""
     },
     destroyOnClose: {
       type: Boolean,
@@ -138,49 +143,49 @@ export default {
   data() {
     return {
       hasDestroyed: false
-    }
+    };
   },
 
   computed: {
     drawerVisible() {
-      return this.visible ? 'hcl-drawer--open' : '';
+      return this.visible ? "hcl-drawer--open" : "";
     },
 
     drawerPlacement() {
-      return 'hcl-drawer__' + this.placement;
+      return "hcl-drawer__" + this.placement;
     },
 
     horizontalOrvertical() {
       const reg = new RegExp(this.placement);
-      return 'left,right'.match(reg) ? 'vertical' : 'horizontal';
+      return "left,right".match(reg) ? "vertical" : "horizontal";
     },
 
     transform() {
       if (this.visible) {
-        return '';
+        return "";
       } else {
-        switch(this.placement) {
-          case 'left':
-            return 'translateX(-100%)';
-          case 'right':
-            return 'translateX(100%)';
-          case 'top':
-            return 'translateY(-100%)';
-          case 'bottom':
-            return 'translateY(100%)'
+        switch (this.placement) {
+          case "left":
+            return "translateX(-100%)";
+          case "right":
+            return "translateX(100%)";
+          case "top":
+            return "translateY(-100%)";
+          case "bottom":
+            return "translateY(100%)";
         }
       }
     },
 
     drawerTrigger() {
-      return 'hcl-drawer__' + this.placement;
+      return "hcl-drawer__" + this.placement;
     },
 
     triggerIcon() {
-      if (this.placement === 'right') {
-        return this.visible ? 'icon-indent' : 'icon-outdent';
+      if (this.placement === "right") {
+        return this.visible ? "icon-indent" : "icon-outdent";
       } else {
-        return this.visible ? 'icon-outdent' : 'icon-indent';
+        return this.visible ? "icon-outdent" : "icon-indent";
       }
     }
   },
@@ -198,7 +203,7 @@ export default {
     }
   },
 
-  methods: {    
+  methods: {
     clickMask(event) {
       if (this.mask && this.maskClosable) {
         this.closeDrawer(event);
@@ -214,25 +219,25 @@ export default {
     },
 
     openDrawer() {
-      this.$emit('update:visible', true);
-      this.$emit('open', event);
+      this.$emit("update:visible", true);
+      this.$emit("open", event);
     },
 
     closeDrawer(event) {
-      this.$emit('update:visible', false);
-      this.$emit('close', event);
+      this.$emit("update:visible", false);
+      this.$emit("close", event);
       setTimeout(() => {
-        this.$emit('closed', event);
+        this.$emit("closed", event);
         if (this.loading) {
-          this.$emit('update:loading', false);
+          this.$emit("update:loading", false);
         }
       }, this.duration);
     },
 
     submit(event) {
-      this.$emit('sumit', event);
+      this.$emit("sumit", event);
       setTimeout(() => {
-        this.$emit('closed', event);
+        this.$emit("closed", event);
       }, this.duration);
     },
 
@@ -240,5 +245,5 @@ export default {
       this.closeDrawer(event);
     }
   }
-}
+};
 </script>

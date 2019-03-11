@@ -60,7 +60,7 @@ export default [
       },
       {
         '参数': 'destroyOnClose',
-        '说明': '是否在关闭时销毁body中的元素',
+        '说明': '是否在关闭时销毁抽屉body中的元素',
         '类型': 'Boolean',
         '可选值': 'true | false',
         '默认值': 'false'
