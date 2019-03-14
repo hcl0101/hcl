@@ -63,7 +63,7 @@ const directive = {
     }
   },
   unbind(el) {
-    if (el.dataset && el.dataset.transfer !== 'true') return false;
+    // if (el.dataset && el.dataset.transfer !== 'true') return false;
     el.className = el.className.replace('v-transfer-dom', '');
     const ref$1 = el.__transferDomData;
     if (!ref$1) return;
