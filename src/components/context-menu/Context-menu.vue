@@ -6,12 +6,13 @@
       display: visible ? 'block' : 'none',
       left: left,
       top: top
-    }"
-    @click="handleClickContextMenu">
+    }">
     <li
       v-for="(item, index) in context"
       class="hcl-context-menu__item"
-      :key="index">
+      :key="index"
+      :index="index"
+      @click="handleClickContextmenu(index)">
       <i :class="item.icon"></i>
       <span>{{ item.label }}</span>
     </li>
@@ -64,8 +65,9 @@ export default {
       this.top = e.pageY + 'px';
     },
 
-    handleClickContextMenu() {
+    handleClickContextmenu(index) {
       this.visible = false;
+      this.$emit('click-contextmenu', this.context[index], index);
     },
 
     handleClickBody() {

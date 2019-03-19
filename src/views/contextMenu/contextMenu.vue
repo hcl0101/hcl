@@ -6,8 +6,9 @@
     <hcl-context-menu
       ref="context"
       :context="context"
-      :show-contextmenu="handleShow"
-      :hide-contextmenu="handleHide">
+      @show-contextmenu="handleShow"
+      @hide-contextmenu="handleHide"
+      @click-contextmenu="handleClickContextmenu">
     </hcl-context-menu>
     <template v-for="(api, index) in apis">
       <Table :key="index" :title="api.title" :data="api.data"></Table>
@@ -41,12 +42,16 @@ export default {
   },
 
   methods: {
+    handleClickContextmenu(menu, index) {
+      console.log(menu, index);
+    },
+
     handleShow() {
-      console.log('show')
+      console.log('show');
     },
 
     handleHide() {
-      console.log('hide')
+      console.log('hide');
     }
   }
 };
