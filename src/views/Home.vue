@@ -23,7 +23,7 @@
 
     data() {
       return {
-        active: '/drawer',
+        active: '/button',
         menu: [
           { index: '/button', title: '按钮' },
           { index: '/drawer', title: '抽屉' },
