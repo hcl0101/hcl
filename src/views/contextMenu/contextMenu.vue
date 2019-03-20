@@ -35,7 +35,9 @@ export default {
       apis: API,
       context: [
         { icon: 'iconfont icon-fenxiangfangshi', label: '编辑' },
+        { divider: true },
         { icon: 'iconfont icon-shujukanban', label: '删除' },
+        { divider: true },
         { icon: 'iconfont icon-addteam', label: '重命名' },
       ]
     };

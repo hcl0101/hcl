@@ -27,4 +27,8 @@ $prefixCls: 'hcl-context-menu';
       vertical-align: middle;
     }
   }
+  &--divider {
+    margin: 5px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
 }

@@ -7,15 +7,16 @@
       left: left,
       top: top
     }">
-    <li
-      v-for="(item, index) in context"
-      class="hcl-context-menu__item"
-      :key="index"
-      :index="index"
-      @click="handleClickContextmenu(index)">
-      <i :class="item.icon"></i>
-      <span>{{ item.label }}</span>
-    </li>
+    <template v-for="(item, index) in context">
+      <li
+        :class="item.divider ? 'hcl-context-menu--divider' : 'hcl-context-menu__item'"
+        :key="index"
+        :index="index"
+        @click="handleClickContextmenu(index)">
+        <i :class="item.icon"></i>
+        <span>{{ item.label }}</span>
+      </li>
+    </template>
   </ul>
 </template>
 
