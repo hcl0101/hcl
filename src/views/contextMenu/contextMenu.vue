@@ -1,11 +1,28 @@
 <template>
   <div>
-    <div class="context-menu--container" v-context-menu="context">
-      <p>右键点击此区域</p>
+    <div class="clearfix">
+      <div class="context-menu--container">
+        <p>普通的</p>
+        <div
+          class="context-menu--item"
+          v-context-menu="context"
+          @contextmenu="handleOpenContextmenu(context)">
+          <p>右键点击此区域</p>
+        </div>
+      </div>
+      <div class="context-menu--container">
+        <p>带分割线</p>
+        <div
+          class="context-menu--item"
+          v-context-menu="contextDivider"
+          @contextmenu="handleOpenContextmenu(contextDivider)">
+          <p>右键点击此区域</p>
+        </div>
+      </div>
     </div>
     <hcl-context-menu
       ref="context"
-      :context="context"
+      :context="contextmenu"
       @show-contextmenu="handleShow"
       @hide-contextmenu="handleHide"
       @click-contextmenu="handleClickContextmenu">
@@ -33,17 +50,26 @@ export default {
   data() {
     return {
       apis: API,
+      contextmenu: [],
       context: [
+        { icon: 'iconfont icon-fenxiangfangshi', label: '编辑' },
+        { icon: 'iconfont icon-shujukanban', label: '删除' },
+        { icon: 'iconfont icon-addteam', label: '重命名' },
+      ],
+      contextDivider: [
         { icon: 'iconfont icon-fenxiangfangshi', label: '编辑' },
         { divider: true },
         { icon: 'iconfont icon-shujukanban', label: '删除' },
         { divider: true },
         { icon: 'iconfont icon-addteam', label: '重命名' },
-      ]
+      ],
     };
   },
 
   methods: {
+    handleOpenContextmenu(contextmenu) {
+      this.contextmenu = contextmenu;
+    },
     handleClickContextmenu(menu, index) {
       console.log(menu, index);
     },
@@ -61,13 +87,24 @@ export default {
 
 <style lang="scss" scoped>
   .context-menu--container {
-    height: 100px;
-    border-radius: 4px;
-    border: 1px solid #409EFF;
+    float: left;
+    width: calc(50% - 15px);
+    box-sizing: border-box;
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
     p {
       line-height: 40px;
       color: #666;
       text-align: center;
+      text-align: left;
+      text-indent: 15px;
+    }
+    .context-menu--item {
+      height: 100px;
+      border-radius: 4px;
+      border: 1px solid #409EFF;
     }
   }
+  
 </style>

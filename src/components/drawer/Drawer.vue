@@ -14,8 +14,8 @@
     <div
       class="hcl-drawer__wrapper"
       :style="{
-        width: horizontalOrvertical === 'vertical' ? width + 'px' : '100%',
-        height: horizontalOrvertical === 'horizontal' ? width + 'px' : '100%',
+        width: mode === 'vertical' ? width + 'px' : '100%',
+        height: mode === 'horizontal' ? width + 'px' : '100%',
         transform: transform,
         transition: 'transform ' + duration / 1000 + 's'
       }">
@@ -42,14 +42,14 @@
       </div>
       <div v-if="showTrigger" :class="['hcl-drawer__trigger', drawerTrigger]"
         :style="{
-          right: horizontalOrvertical === 'horizontal'
+          right: mode === 'horizontal'
             ? triggerRight + 'px'
             : placement === 'left' ? '-40px' : '',
-          bottom: horizontalOrvertical === 'vertical'
+          bottom: mode === 'vertical'
             ? triggerBottom + 'px'
             : placement === 'top' ? '-40px' : 0,
-          left: horizontalOrvertical === 'vertical' && placement === 'right' ? '-40px' : '',
-          top: horizontalOrvertical === 'horizontal' && placement === 'bottom' ? '-40px' : ''
+          left: mode === 'vertical' && placement === 'right' ? '-40px' : '',
+          top: mode === 'horizontal' && placement === 'bottom' ? '-40px' : ''
         }"
         @click="clickTrigger($event)">
         <i :class="[ 'iconfont', triggerIcon ]"></i>
@@ -152,11 +152,10 @@ export default {
     },
 
     drawerPlacement() {
-      this.visible = false;
       return "hcl-drawer__" + this.placement;
     },
 
-    horizontalOrvertical() {
+    mode() {
       const reg = new RegExp(this.placement);
       return "left,right".match(reg) ? "vertical" : "horizontal";
     },

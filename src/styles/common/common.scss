@@ -17,3 +17,13 @@
     transform: rotateZ(360deg);
   }
 }
+
+.clearfix {
+  &:before, &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
