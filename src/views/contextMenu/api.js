@@ -6,7 +6,10 @@ export default [
         '参数': 'context',
         '说明': '右键菜单配置',
         '类型': 'Array',
-        '可选值': '', 
+        '配置': [
+          { icon: 'iconfont icon-xxx', label: '编辑' },
+          { divider: true },
+        ], 
         '默认值': '[]'
       }
     ]

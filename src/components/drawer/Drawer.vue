@@ -152,6 +152,7 @@ export default {
     },
 
     drawerPlacement() {
+      this.visible = false;
       return "hcl-drawer__" + this.placement;
     },
 

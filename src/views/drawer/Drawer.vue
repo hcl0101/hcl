@@ -1,6 +1,10 @@
 <template>
   <div>
-    <button @click="handleClick">{{ btnText }}</button>
+    <hcl-button type="primary" @click="handleClick('right')">right</hcl-button>
+    <hcl-button type="primary" @click="handleClick('left')">left</hcl-button>
+    <hcl-button type="primary" @click="handleClick('top')">top</hcl-button>
+    <hcl-button type="primary" @click="handleClick('bottom')">bottom</hcl-button>
+
     <template v-for="(api, index) in apis">
       <Table :key="index" :title="api.title" :data="api.data"></Table>
     </template>
@@ -12,7 +16,7 @@
       show-footer
       show-trigger
       destroyOnClose
-      placement="right"
+      :placement="placement"
       :trigger-bottom="100"
       :visible.sync="visible"
       :loading.sync="loading"
@@ -38,21 +42,18 @@ export default {
 
   data() {
     return {
+      apis: API,
       visible: false,
       loading: false,
-      apis: API
-    }
-  },
-
-  computed: {
-    btnText() {
-      return this.visible ? '收起' : '展开';
+      placement: 'right',
+      btnText: '',
     }
   },
 
   methods: {
-    handleClick() {
+    handleClick(placement) {
       this.visible = !this.visible;
+      this.placement = placement;
     },
     open() {
       console.log('open');

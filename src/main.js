@@ -7,7 +7,7 @@ import store from "./store";
 import "./styles/index.scss";
 import "./app.scss";
 
-hcl.install(Vue);
+Vue.use(hcl);
 
 Vue.config.productionTip = false;
 

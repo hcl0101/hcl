@@ -7,7 +7,8 @@
       btnSize,
       { 'hcl-button--dashed': dashed },
       { 'is-loading': loading }
-    ]">
+    ]"
+    @click="handleClick">
     <i class="iconfont icon-loading" v-if="loading"></i>
     <i :class="icon" v-if="icon && !loading"></i>
     <span>
@@ -53,6 +54,12 @@ export default {
     },
     btnSize() {
       return 'hcl-button--' + this.size;
+    }
+  },
+
+  methods: {
+    handleClick(e) {
+      this.$emit('click', e);
     }
   }
 }
