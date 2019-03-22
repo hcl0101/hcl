@@ -53,9 +53,7 @@ export default {
 
   watch: {
     visible(newVal, oldVal) {
-      if (newVal) {
-        this.handleShow();
-      } else {
+      if (!newVal) {
         this.handleHide();
       }
     }
@@ -68,6 +66,7 @@ export default {
       this.top = e.pageY + 'px';
 
       this.vnode = vnode;
+      this.$emit('show-contextmenu', this.vnode);
     },
 
     handleClickContextmenu(index) {
@@ -80,12 +79,8 @@ export default {
       document.body.addEventListener('contextmenu', () => { this.visible = false });
     },
 
-    handleShow() {
-      this.$emit('show-contextmenu');
-    },
-
     handleHide() {
-      this.$emit('hide-contextmenu');
+      this.$emit('hide-contextmenu', this.vnode);
     }
   }
 }

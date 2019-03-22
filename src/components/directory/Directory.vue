@@ -28,7 +28,7 @@ export default {
 
   methods: {
     handleClick(e) {
-      if (this.$parent.$el.getAttribute('class') === 'hcl-directory-group') {
+      if (this.$parent.$el.getAttribute('class').match('hcl-directory-group')) {
         this.$parent.handleClick(this.data, e);
       } else {
         this.$emit('click', this.data, e);
