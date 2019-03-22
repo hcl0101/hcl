@@ -42,6 +42,8 @@ export default {
       visible: false,
       left: 0,
       top: 0,
+
+      vnode: null //右键点击的dom对应的虚拟dom
     };
   },
 
@@ -60,15 +62,17 @@ export default {
   },
 
   methods: {
-    showContextMenu(e) {
+    showContextMenu(vnode, e) {
       this.visible = true;
       this.left = e.pageX + 'px';
       this.top = e.pageY + 'px';
+
+      this.vnode = vnode;
     },
 
     handleClickContextmenu(index) {
       this.visible = false;
-      this.$emit('click-contextmenu', this.context[index], index);
+      this.$emit('click-contextmenu', this.context[index], this.vnode);
     },
 
     handleClickBody() {

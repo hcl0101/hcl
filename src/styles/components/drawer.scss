@@ -1,5 +1,9 @@
 
 $prefixCls: 'hcl-drawer';
+$drawer-right-box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+$drawer-left-box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+$drawer-top-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+$drawer-bottom-box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
 
 .#{$prefixCls} {
   position: fixed;
@@ -27,31 +31,31 @@ $prefixCls: 'hcl-drawer';
   &.#{$prefixCls}__right {
     .#{$prefixCls}__wrapper {
       right: 0;
-      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+      box-shadow: $drawer-right-box-shadow;
     }
     .#{$prefixCls}__trigger {
       border-radius: 6px 0 0 6px;
-      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+      box-shadow: $drawer-right-box-shadow;
     }
   }
   &.#{$prefixCls}__left {
     .#{$prefixCls}__wrapper {
       left: 0;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+      box-shadow: $drawer-left-box-shadow;
     }
     .#{$prefixCls}__trigger {
       border-radius: 0 6px 6px 0;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+      box-shadow: $drawer-left-box-shadow;
     }
   }
   &.#{$prefixCls}__top {
     .#{$prefixCls}__wrapper {
       top: 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: $drawer-top-box-shadow;
     }
     .#{$prefixCls}__trigger {
       border-radius: 0 0px 6px 6px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: $drawer-top-box-shadow;
     }
     i {
       transform: rotate(90deg);
@@ -60,11 +64,11 @@ $prefixCls: 'hcl-drawer';
   &.#{$prefixCls}__bottom {
     .#{$prefixCls}__wrapper {
       bottom: 0;
-      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: $drawer-bottom-box-shadow;
     }
     .#{$prefixCls}__trigger {
       border-radius: 6px 6px 0 0;
-      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: $drawer-bottom-box-shadow;
     }
     i {
       transform: rotate(-90deg);

@@ -23,7 +23,7 @@ const directive = {
       stopPropagation(e);
       
       const context = vnode.context.$refs['context']; //写死了：ref="context"
-      context.showContextMenu(e);
+      context.showContextMenu(vnode, e);
     });
   }
 }

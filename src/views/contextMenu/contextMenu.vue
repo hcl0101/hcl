@@ -70,8 +70,8 @@ export default {
     handleOpenContextmenu(contextmenu) {
       this.contextmenu = contextmenu;
     },
-    handleClickContextmenu(menu, index) {
-      console.log(menu, index);
+    handleClickContextmenu(menu, vdom) {
+      console.log(menu, vdom);
     },
 
     handleShow() {
