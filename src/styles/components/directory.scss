@@ -27,5 +27,9 @@ $prefixCls: 'hcl-directory';
 }
 
 .#{$prefixCls}-group {
-  
+  &--empty {
+    line-height: 26px;
+    color: #606266;
+    text-align: center;
+  }
 }

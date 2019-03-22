@@ -1,6 +1,12 @@
 <template>
   <div class="hcl-directory-group clearfix">
-    <slot></slot>
+    <div v-if="isEmpty" class="hcl-directory-group--empty">{{ emptyText }}</div>
+    <template v-else>
+      <div v-if="loading" style="margin-left: 15px;">
+        <i class="iconfont icon-loading"></i>
+      </div>
+      <slot v-else></slot>
+    </template>
   </div>
 </template>
 
@@ -9,28 +15,24 @@ export default {
   name: 'hclDirectoryGroup',
 
   props: {
-    data: {
-      type: Array,
-      default: () => []
-    },
-    contextmenu: {
-      type: Array,
-      default: () => []
-    },
     loading: {
       type: Boolean,
       default: false
     },
     emptyText: {
       type: String,
-      default: '暂时没有数据!'
+      default: '该文件夹为空!'
     }
   },
 
   data() {
     return {
-
+      isEmpty: false
     };
+  },
+
+  created() {
+    this.isEmpty = this.$slots.default && this.$slots.default.length ? false : true;
   },
 
   methods: {

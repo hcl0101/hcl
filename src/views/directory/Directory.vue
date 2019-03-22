@@ -1,20 +1,20 @@
 <template>
   <div class="view-directory">
-    <hcl-directory-group @click="handleClick">
-      <template v-for="directory in directories">
+    <hcl-directory-group :loading="loading" @click="handleClick">
+      <template v-for="directory in data">
         <hcl-directory
           v-context-menu="contextmenu"
           :key="directory.id"
           :data="directory">
         </hcl-directory>
       </template>
-      <hcl-context-menu
-        ref="context"
-        :context="contextmenu"
-        @show-contextmenu="handleShowContextmenu"
-        @click-contextmenu="handleClickContextmenu">
-      </hcl-context-menu>
     </hcl-directory-group>
+    <hcl-context-menu
+      ref="context"
+      :context="contextmenu"
+      @show-contextmenu="handleShowContextmenu"
+      @click-contextmenu="handleClickContextmenu">
+    </hcl-context-menu>
   </div>
 </template>
 
@@ -31,7 +31,8 @@ export default {
 
   data() {
     return {
-      directories: [
+      loading: false,
+      data: [
         { id: 1, name: '新建文件夹', img: ICON_DIRECTORY_ADD, type: 'create' },
         { id: 2, name: '文件夹', img: ICON_DIRECTORY, type: 'folder' },
         { id: 3, name: '文件', img: ICON_DIRECTORY, type: 'file' },
@@ -43,11 +44,22 @@ export default {
   methods: {
     handleClick(item, e) {
       console.log(`点击了:${item.name}`);
+      if (item.type !== 'create') {
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+        }, 1000);
+      } else {
+        this.createFolder();
+      }
+    },
+    createFolder() {
+      this.data.push({ id: this.data.length + 1, name: '文件夹' + this.data.length, img: ICON_DIRECTORY, type: 'folder' },);
     },
     handleShowContextmenu(vnode) {
-      const index = this.directories.findIndex(directory => directory.id === vnode.key);
+      const index = this.data.findIndex(directory => directory.id === vnode.key);
 
-      if (this.directories[index].type === 'create') {
+      if (this.data[index].type === 'create') {
         this.contextmenu = [];
       } else {
         this.contextmenu = [
@@ -58,8 +70,8 @@ export default {
       }
     },
     handleClickContextmenu(contextmenu, vnode) {
-      const index = this.directories.findIndex(directory => directory.id === vnode.key);
-      console.log(`当前操作： ${this.directories[index].name}, 点击了${contextmenu.label}`);
+      const index = this.data.findIndex(directory => directory.id === vnode.key);
+      console.log(`当前操作： ${this.data[index].name}, 点击了${contextmenu.label}`);
     }
   }
 }
