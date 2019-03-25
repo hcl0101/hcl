@@ -19,6 +19,10 @@ export default {
       type: Boolean,
       default: false
     },
+    editable: {
+      type: Boolean,
+      default: true
+    },
     emptyText: {
       type: String,
       default: '该文件夹为空!'
@@ -38,6 +42,10 @@ export default {
   methods: {
     handleClick(data, e) {
       this.$emit('click', data, e);
+    },
+
+    rename(index) {
+      this.$children[index].editing = true;
     }
   }
 }

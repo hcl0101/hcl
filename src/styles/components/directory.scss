@@ -24,6 +24,12 @@ $prefixCls: 'hcl-directory';
     font-size: 14px;
     text-align: center;
   }
+  input {
+    width: inherit;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 5px;
+  }
 }
 
 .#{$prefixCls}-group {

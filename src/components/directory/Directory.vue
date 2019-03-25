@@ -1,7 +1,20 @@
 <template>
   <div class="hcl-directory" @click="handleClick">
     <img :src="data.img" alt="">
-    <p class="ellipsis" :title="data.name">{{ data.name }}</p>
+    <input v-if="editing"
+      ref="input"
+      class="hcl-input"
+      type="text"
+      v-model="name"
+      @click.stop.prevent
+      @keyup.esc="handleKeyupEsc"
+      @keyup.enter="handleKeyupEnter"/>
+    <p v-else
+      class="ellipsis"
+      :title="name"
+      @click.stop.prevent="handleClickName">
+      {{ name }}
+    </p>
   </div>
 </template>
 
@@ -26,13 +39,57 @@ export default {
     }
   },
 
+  data() {
+    return {
+      name: '',
+      cacheName: '',
+      editing: false,
+      isGroup: false
+    }
+  },
+
+  watch: {
+    data: {
+      immediate: true,
+      deep: true,
+      handler(newVal, oldVal) {
+        this.cacheName = newVal.name;
+        this.name = newVal.name;
+      }
+    },
+    editing(newVal, oldVal) {
+      if (newVal) {
+        this.$nextTick(() => {
+          this.focus();
+        })
+      }
+    }
+  },
+
+  mounted() {
+    this.isGroup = this.$parent.$el.getAttribute('class').match('hcl-directory-group');
+  },
+
   methods: {
+    focus() {
+      this.$refs.input.focus();
+    },
     handleClick(e) {
-      if (this.$parent.$el.getAttribute('class').match('hcl-directory-group')) {
+      if (this.isGroup) {
         this.$parent.handleClick(this.data, e);
       } else {
         this.$emit('click', this.data, e);
       }
+    },
+    handleClickName() {
+      this.editing = true;
+    },
+    handleKeyupEsc() {
+      this.editing = false;
+      this.name = this.cacheName;
+    },
+    handleKeyupEnter() {
+      this.editing = false;
     }
   }
 }
