@@ -73,7 +73,7 @@
     main {
       flex: 1;
       width: 0;
-      padding: 15px;
+      padding: 15px 30px;
       overflow: auto;
     }
   }

@@ -16,7 +16,7 @@ const stopPropagation= (e) => { //阻止冒泡
 
 const directive = {
   inserted(el, binding, vnode) {
-    el.className = el.className ? el.className + ' v-context-menu' : 'v-context-menu';
+    // el.className = el.className ? el.className + ' v-context-menu' : 'v-context-menu';
 
     el.addEventListener('contextmenu', (e) => {
       preventDefault(e);
