@@ -23,11 +23,13 @@
         <template>
           <div v-if="showHeader" class="hcl-drawer__header">
             <div class="header__title">{{ title }}</div>
-            <button v-if="closable" class="header__icon--close" @click="closeDrawer($event)">
-              <span class="iconfont icon-close"></span>
-            </button>
           </div>
           <slot v-else name="header"></slot>
+        </template>
+        <template v-if="closable">
+          <button class="hcl-drawer__icon--close" @click="closeDrawer($event)">
+            <span class="iconfont icon-close"></span>
+          </button>
         </template>
         <div class="hcl-drawer__body">
           <slot name="body"></slot>
