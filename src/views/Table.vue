@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <h3>{{ title }}</h3>
     <table>
       <thead>
@@ -13,7 +13,7 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </section>
 </template>
 
 <script>

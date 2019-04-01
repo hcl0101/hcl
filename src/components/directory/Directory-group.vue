@@ -22,6 +22,14 @@ export default {
     emptyText: {
       type: String,
       default: '该文件夹为空!'
+    },
+    renameable: {
+      type: Boolean,
+      default: true
+    },
+    hoverColor: {
+      type: String,
+      default: '#bddaf9'
     }
   },
 
@@ -37,8 +45,11 @@ export default {
 
   methods: {
     rename(index) {
-      if (!this.$children[index].renameable) return
-      this.$children[index].editing = true;
+      // if (!this.renameable) return
+      // if (!this.$children[index].renameable) return
+      // this.$children[index].editing = true;
+
+      this.$children[index].handleRename(inde)
     }
   }
 }

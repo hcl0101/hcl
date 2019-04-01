@@ -19,7 +19,7 @@
     <p v-else
       class="ellipsis"
       :title="name"
-      @click.stop.prevent="handleClickName">
+      @click.stop.prevent="handleRename">
       {{ name }}
     </p>
   </div>
@@ -81,7 +81,7 @@ export default {
       this.$refs.input.focus();
     },
     onMouseEnter() {
-      this.$refs.directory.style.backgroundColor = this.hoverColor;
+      this.$refs.directory.style.backgroundColor = this.$parent.hoverColor || this.hoverColor
     },
     onMouseLeave() {
       this.$refs.directory.style.backgroundColor = 'inherit';
@@ -89,7 +89,8 @@ export default {
     handleClick(e) {
       this.$emit('click', this.data, e);
     },
-    handleClickName() {
+    handleRename() {
+      if (!this.$parent.renameable) return
       if (!this.renameable) return
       this.editing = true;
     },
