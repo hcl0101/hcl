@@ -12,7 +12,9 @@
       </ul>
     </aside>
     <main>
-      <router-view></router-view>
+      <transition name="fade">  
+        <router-view />
+      </transition>
     </main>
   </div>
 </template>

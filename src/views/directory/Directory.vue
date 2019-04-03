@@ -6,7 +6,6 @@
         <hcl-directory
           v-context-menu="contextmenu"
           :key="directory.id"
-          :renameable="directory.id === 2"
           :data="directory"
           @click="handleClick">
         </hcl-directory>

@@ -49,7 +49,7 @@ export default {
       // if (!this.$children[index].renameable) return
       // this.$children[index].editing = true;
 
-      this.$children[index].handleRename(inde)
+      this.$children[index].handleRename(index)
     }
   }
 }

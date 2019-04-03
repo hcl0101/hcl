@@ -12,7 +12,7 @@ export default [
         '参数': 'renameable',
         '说明': '批量设置是否可重命名',
         '类型': 'Boolean',
-        '默认值': false
+        '默认值': true
       },
       {
         '参数': 'hoverColor',
@@ -49,13 +49,13 @@ export default [
       },
       {
         '参数': 'renameable',
-        '说明': '是否可重命名, 若被group包裹, 效果则被parent的renameable覆盖',
+        '说明': '是否可重命名, 优先级高于group的renameable',
         '类型': 'Boolean',
         '默认值': true
       },
       {
         '参数': 'hoverColor',
-        '说明': 'hover时的背景颜色, 若被group包裹, 效果则被parent的hoverColor覆盖',
+        '说明': 'hover时的背景颜色, 优先级低于group的hoverColor',
         '类型': 'String',
         '默认值': '#bddaf9'
       }
