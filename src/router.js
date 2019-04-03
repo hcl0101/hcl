@@ -19,13 +19,17 @@ export default new Router({
           name: "button",
           component: () => import("./views/button/Button.vue")
         }, {
-          path: "/drawer",
-          name: "drawer",
-          component: () => import("./views/drawer/Drawer.vue")
-        }, {
           path: "/contextMenu",
           name: "contextMenu",
           component: () => import("./views/contextMenu/contextMenu.vue")
+        }, {
+          path: "/countUp",
+          name: "countUp",
+          component: () => import("./views/countUp/CountUp.vue")
+        }, {
+          path: "/drawer",
+          name: "drawer",
+          component: () => import("./views/drawer/Drawer.vue")
         }, {
           path: "/directory",
           name: "directory",
