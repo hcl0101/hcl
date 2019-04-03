@@ -12,7 +12,7 @@ $prefixCls: 'hcl-button';
     margin-left: 10px;
   }
   &--dashed {
-    border-style: dashed;
+    border-style: dashed !important;
   }
   &--default {
     color: #606266;
