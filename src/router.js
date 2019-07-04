@@ -34,6 +34,10 @@ export default new Router({
           path: "/directory",
           name: "directory",
           component: () => import("./views/directory/Directory.vue")
+        }, {
+          path: "/loading",
+          name: "loading",
+          component: () => import("./views/loading/Loading.vue")
         },
       ]
     }

@@ -32,6 +32,7 @@
           { index: '/countUp', title: '数字渐变' },
           { index: '/drawer', title: '抽屉' },
           { index: '/directory', title: '目录' },
+          { index: '/loading', title: '加载中' },
         ]
       }
     },

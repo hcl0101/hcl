@@ -4,6 +4,7 @@ import ContextMenu from "./context-menu/index.js";
 import Drawer from "./drawer/index.js";
 import DirectoryGroup from "./directory-group/index.js";
 import Directory from "./directory/index.js";
+import Loading from "./loading/index.js";
 
 const components = [
   Button,
@@ -11,7 +12,8 @@ const components = [
   ContextMenu,
   Drawer,
   DirectoryGroup,
-  Directory
+  Directory,
+  Loading
 ];
 
 components.install = function(Vue) {
