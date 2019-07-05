@@ -31,6 +31,7 @@ export default {
     background-color: #409eff;
     height: 100%;
     width: 8px;
+    margin: 0 1px;
     display: inline-block;
     
     -webkit-animation: stretchdelay 1.2s infinite ease-in-out;

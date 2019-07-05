@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner" :style="{ background: backgroundColor }"></div>
+  <div class="spinner flex-center" :style="{ background: backgroundColor }"></div>
 </template>
 
 <script>

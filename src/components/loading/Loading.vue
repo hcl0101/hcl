@@ -1,8 +1,10 @@
 <template>
-  <LoadingCircle v-if="type === 'circle'" :backgroundColor="backgroundColor"></LoadingCircle>
-  <LoadingFlip v-else-if="type === 'flip'" :backgroundColor="backgroundColor"></LoadingFlip>
-  <LoadingBounce v-else-if="type === 'bounce'" :backgroundColor="backgroundColor"></LoadingBounce>
-  <LoadingRectangle v-else-if="type === 'rectangle'" :backgroundColor="backgroundColor"></LoadingRectangle>
+  <div class="loading flex-center">
+    <LoadingCircle v-if="type === 'circle'" :backgroundColor="backgroundColor"></LoadingCircle>
+    <LoadingFlip v-else-if="type === 'flip'" :backgroundColor="backgroundColor"></LoadingFlip>
+    <LoadingBounce v-else-if="type === 'bounce'" :backgroundColor="backgroundColor"></LoadingBounce>
+    <LoadingRectangle v-else-if="type === 'rectangle'" :backgroundColor="backgroundColor"></LoadingRectangle>
+  </div>
 </template>
 
 <script>
@@ -34,3 +36,9 @@ export default {
 }
 </script>
 
+<style scoped>
+  .loading {
+    width: 100%;
+    height: 100%;
+  }
+</style>

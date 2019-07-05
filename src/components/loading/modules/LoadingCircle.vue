@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner">
+  <div class="spinner flex-center">
     <div class="spinner-container container1">
       <div class="circle1" :style="{ background: backgroundColor }"></div>
       <div class="circle2" :style="{ background: backgroundColor }"></div>

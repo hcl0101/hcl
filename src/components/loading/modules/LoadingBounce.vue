@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner">
+  <div class="spinner flex-center">
     <div class="bounce1" :style="{ background: backgroundColor }"></div>
     <div class="bounce2" :style="{ background: backgroundColor }"></div>
     <div class="bounce3" :style="{ background: backgroundColor }"></div>
