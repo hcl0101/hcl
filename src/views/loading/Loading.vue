@@ -1,18 +1,18 @@
 <template>
   <div>
-    <div>
-      <hcl-button type="primary" @click="handleChange('bounce')">跳动</hcl-button>
-      <hcl-button type="primary" @click="handleChange('flip')">翻转</hcl-button>
-      <hcl-button type="primary" @click="handleChange('circle')">圆形</hcl-button>
-      <hcl-button type="primary" @click="handleChange('rectangle')">矩形</hcl-button>
-      <hcl-button type="primary" @click="handleChange('svg-square')">正方形svg</hcl-button>
-      <hcl-button type="primary" @click="handleChange('svg-gear')">齿轮svg</hcl-button>
-    </div>
     <div class="loading-container clearfix">
       <div class="loading-item" v-for="type in types" :key="type">
         <hcl-loading :type="type" :backgroundColor="'#409eff'"></hcl-loading>
         <div class="loading-item--label">{{ type }}</div>
       </div>
+    </div>
+    <div>
+      <h3>备注</h3>
+      <p>
+        其中svg-xxx来源于
+        <a href="https://loading.io/" target="_blank">https://loading.io/</a>
+        这里随便取了两个
+      </p>
     </div>
     <template v-for="(api, index) in apis">
       <Table :key="index" :title="api.title" :data="api.data"></Table>
@@ -33,12 +33,6 @@ export default {
     return {
       apis: API,
       types: ['bounce', 'flip', 'circle', 'rectangle', 'svg-square', 'svg-gear']
-    }
-  },
-
-  methods: {
-    handleChange(type) {
-      this.type = type;
     }
   }
 }
