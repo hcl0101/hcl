@@ -1,26 +1,32 @@
 <template>
   <div class="loading flex-center">
-    <LoadingCircle v-if="type === 'circle'" :backgroundColor="backgroundColor"></LoadingCircle>
-    <LoadingFlip v-else-if="type === 'flip'" :backgroundColor="backgroundColor"></LoadingFlip>
-    <LoadingBounce v-else-if="type === 'bounce'" :backgroundColor="backgroundColor"></LoadingBounce>
-    <LoadingRectangle v-else-if="type === 'rectangle'" :backgroundColor="backgroundColor"></LoadingRectangle>
+    <css-circle v-if="type === 'circle'" :backgroundColor="backgroundColor"></css-circle>
+    <css-flip v-else-if="type === 'flip'" :backgroundColor="backgroundColor"></css-flip>
+    <css-bounce v-else-if="type === 'bounce'" :backgroundColor="backgroundColor"></css-bounce>
+    <css-rectangle v-else-if="type === 'rectangle'" :backgroundColor="backgroundColor"></css-rectangle>
+    <svg-square v-else-if="type === 'svg-square'"></svg-square>
+    <svg-gear v-else-if="type === 'svg-gear'"></svg-gear>
   </div>
 </template>
 
 <script>
-import LoadingCircle from './modules/LoadingCircle';
-import LoadingRectangle from './modules/LoadingRectangle';
-import LoadingFlip from './modules/LoadingFlip';
-import LoadingBounce from './modules/LoadingBounce';
+import CssCircle from './modules/css-circle';
+import CssRectangle from './modules/css-rectangle';
+import CssFlip from './modules/css-flip';
+import CssBounce from './modules/css-bounce';
+import SvgSquare from './modules/svg-square';
+import SvgGear from './modules/svg-gear';
 
 export default {
   name: "hclLoading",
   
   components: {
-    LoadingCircle,
-    LoadingRectangle,
-    LoadingFlip,
-    LoadingBounce
+    CssCircle,
+    CssRectangle,
+    CssFlip,
+    CssBounce,
+    SvgSquare,
+    SvgGear
   },
 
   props: {
