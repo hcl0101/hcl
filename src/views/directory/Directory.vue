@@ -1,13 +1,17 @@
 <template>
 <div>
   <div class="view-directory">
-    <hcl-directory-group ref="directory" :loading="loading">
-      <template v-for="directory in data">
+    <hcl-directory-group
+      ref="directory"
+      :loading="loading">
+      <template v-for="(directory, index) in data">
         <hcl-directory
           v-context-menu="contextmenu"
           :key="directory.id"
+          :show-checkbox="directory.showCheckbox"
           :data="directory"
-          @click="handleClick">
+          @click="handleClick"
+          @rename="name => rename(name, index)">
         </hcl-directory>
       </template>
     </hcl-directory-group>
@@ -47,13 +51,13 @@ export default {
       apis: API,
       loading: false,
       data: [
-        { id: 1, name: '新建文件夹', img: ICON_DIRECTORY_ADD, type: 'create' },
-        { id: 2, name: '文件夹1', img: ICON_DIRECTORY, type: 'folder' },
-        { id: 3, name: '文件夹2', img: ICON_DIRECTORY, type: 'folder' },
-        { id: 4, name: '文件夹3', img: ICON_DIRECTORY, type: 'folder' },
-        { id: 5, name: '文件1', img: ICON_FILE, type: 'file' },
-        { id: 6, name: '文件2', img: ICON_FILE, type: 'file' },
-        { id: 7, name: '文件3', img: ICON_FILE, type: 'file' },
+        { id: 1, type: 'create', name: '新建文件夹', editing: false, showCheckbox: false, img: ICON_DIRECTORY_ADD },
+        { id: 2, type: 'folder', name: '文件夹1', editing: false, showCheckbox: true, img: ICON_DIRECTORY },
+        { id: 3, type: 'folder', name: '文件夹2', editing: false, showCheckbox: true, img: ICON_DIRECTORY },
+        { id: 4, type: 'folder', name: '文件夹3', editing: false, showCheckbox: true, img: ICON_DIRECTORY },
+        { id: 5, type: 'file', name: '文件1', editing: false, showCheckbox: true, img: ICON_FILE },
+        { id: 6, type: 'file', name: '文件2', editing: false, showCheckbox: true, img: ICON_FILE },
+        { id: 7, type: 'file', name: '文件3', editing: false, showCheckbox: true, img: ICON_FILE }
       ],
       contextmenu: []
     };
@@ -61,7 +65,6 @@ export default {
 
   methods: {
     handleClick(item, e) {
-      console.log(`点击了:${item.name}`);
       if (item.type === 'create') {
         this.createFolder();
       } else if (item.type === 'folder') {
@@ -75,11 +78,9 @@ export default {
       this.data.push({
         id: this.data.length + 1,
         name: '文件夹' + this.data.length,
+        editing: true,
         img: ICON_DIRECTORY,
         type: 'folder'
-      });
-      this.$nextTick(() => {
-        this.$refs['directory'].rename(this.data.length - 1);
       });
     },
 
@@ -96,10 +97,16 @@ export default {
 
     showContextmenu(vnode) {
       const index = this.data.findIndex(directory => directory.id === vnode.key);
+      const { type } = this.data[index];
 
-      if (this.data[index].type === 'create') {
+      if (type === 'create') {
         this.contextmenu = [];
-      } else {
+      } else if (type === 'folder') {
+        this.contextmenu = [
+          { label: '删除', value: 'delete' },
+          { label: '重命名', value: 'rename' }
+        ];
+      } else if (type === 'file') {
         this.contextmenu = [
           { label: '编辑', value: 'edit' },
           { label: '删除', value: 'delete' },
@@ -110,16 +117,19 @@ export default {
 
     clickContextmenu(contextmenu, vnode) {
       const index = this.data.findIndex(directory => directory.id === vnode.key);
-
-      alert(`当前操作： ${this.data[index].name}, 点击了${contextmenu.value}`);
       const type = contextmenu.value;
+      
       if (type === 'edit') {
-        
+        this.data[index].editing = true;
       } else if (type === 'delete') {
         this.data.splice(index, 1);
       } else if (type === 'rename') {
-        this.$refs['directory'].rename(index);
+        this.data[index].editing = true;
       }
+    },
+
+    rename(name, index) {
+      this.data[index].name = name;
     }
   }
 }
@@ -127,7 +137,6 @@ export default {
 
 <style lang="scss" scoped>
   .view-directory {
-    padding: 15px;
     margin: 0 20px 20px 20px;
     border: 1px solid #ebedf0;
     border-radius: 2px;

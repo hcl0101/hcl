@@ -2,13 +2,14 @@
   <div
     ref="directory"
     class="hcl-directory"
+    :style="{ backgroundColor: isHover ? hoverColor : 'inherit' }"
     @click="handleClick"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave">
+    @mouseenter="isHover = true"
+    @mouseleave="isHover = false">
     <div class="img-container">
       <img :src="data.img" alt="">
     </div>
-    <input v-if="editing"
+    <input v-if="data.editing"
       ref="input"
       class="hcl-input"
       type="text"
@@ -22,6 +23,15 @@
       @click.stop.prevent="handleRename">
       {{ name }}
     </p>
+    <div
+      class="checkbox-container"
+      v-if="showCheckbox"
+      :style="{
+        display: (isHover || isChecked) ? 'block' : 'none',
+      }"
+      @click.stop>
+      <el-checkbox @change="value => isChecked = value" :label="data.name"></el-checkbox>
+    </div>
   </div>
 </template>
 
@@ -36,9 +46,14 @@ export default {
       default: () => {
         return {
           img: '',
-          name: ''
+          name: '',
+          editing: false
         }
       }
+    },
+    showCheckbox: {
+      type: Boolean,
+      default: false
     },
     renameable: {
       type: Boolean,
@@ -54,7 +69,8 @@ export default {
     return {
       name: '',
       cacheName: '',
-      editing: false
+      isHover: false,
+      isChecked: false
     }
   },
 
@@ -65,13 +81,11 @@ export default {
       handler(newVal, oldVal) {
         this.cacheName = newVal.name;
         this.name = newVal.name;
-      }
-    },
-    editing(newVal, oldVal) {
-      if (newVal) {
-        this.$nextTick(() => {
-          this.focus();
-        })
+        if (newVal.editing) {
+          this.$nextTick(() => {
+            this.focus();
+          });
+        }
       }
     }
   },
@@ -80,26 +94,22 @@ export default {
     focus() {
       this.$refs.input.focus();
     },
-    onMouseEnter() {
-      this.$refs.directory.style.backgroundColor = this.$parent.hoverColor || this.hoverColor
-    },
-    onMouseLeave() {
-      this.$refs.directory.style.backgroundColor = 'inherit';
-    },
     handleClick(e) {
       this.$emit('click', this.data, e);
     },
     handleRename() {
       if (!this.$parent.renameable) return
       if (!this.renameable) return
-      this.editing = true;
+      this.data.editing = true;
     },
     handleKeyupEsc() {
-      this.editing = false;
+      this.data.editing = false;
       this.name = this.cacheName;
+      this.$emit('rename', this.name);
     },
     handleKeyupEnter() {
-      this.editing = false;
+      this.data.editing = false;
+      this.$emit('rename', this.name);
     }
   }
 }
