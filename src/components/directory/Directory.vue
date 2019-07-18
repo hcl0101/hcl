@@ -30,7 +30,11 @@
         display: (isHover || isChecked) ? 'block' : 'none',
       }"
       @click.stop>
-      <el-checkbox @change="value => isChecked = value" :label="data.name"></el-checkbox>
+      <el-checkbox
+        v-model="isChecked"
+        :label="data.name"
+        @change="value => isChecked = value">
+      </el-checkbox>
     </div>
   </div>
 </template>

@@ -3,7 +3,9 @@
   <div class="view-directory">
     <hcl-directory-group
       ref="directory"
-      :loading="loading">
+      :loading="loading"
+      :breadcrumb-list="breadcrumbList"
+      @click-breadcrumb="clickBreadcrumb">
       <template v-for="(directory, index) in data">
         <hcl-directory
           v-context-menu="contextmenu"
@@ -59,6 +61,7 @@ export default {
         { id: 6, type: 'file', name: '文件2', editing: false, showCheckbox: true, img: ICON_FILE },
         { id: 7, type: 'file', name: '文件3', editing: false, showCheckbox: true, img: ICON_FILE }
       ],
+      breadcrumbList: [{ name: '根目录', id: '/' }],
       contextmenu: []
     };
   },
@@ -68,9 +71,9 @@ export default {
       if (item.type === 'create') {
         this.createFolder();
       } else if (item.type === 'folder') {
-        this.clickFolder();
+        this.clickFolder(item);
       } else {
-        this.clickFile();
+        this.clickFile(item);
       }
     },
 
@@ -84,15 +87,21 @@ export default {
       });
     },
 
-    clickFolder() {
+    clickFolder(folder) {
       this.loading = true;
+      this.breadcrumbList.push({ name: folder.name, id: folder.id });
       setTimeout(() => {
         this.loading = false;
       }, 1000);
     },
 
-    clickFile() {
+    clickFile(file) {
       alert('点击了文件')
+    },
+
+    clickBreadcrumb(breadcrumb) {
+      const index = this.breadcrumbList.findIndex(b => b.id === breadcrumb.id);
+      this.breadcrumbList.splice(index + 1, this.breadcrumbList.length - 1);
     },
 
     showContextmenu(vnode) {

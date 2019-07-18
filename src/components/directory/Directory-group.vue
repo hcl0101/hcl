@@ -1,5 +1,5 @@
 <template>
-  <div class="hcl-directory-group clearfix">
+  <div class="hcl-directory-group">
     <div class="hcl-directory-group__header">
       <el-checkbox
         class="check-all"
@@ -20,8 +20,9 @@
         <div v-if="loading" style="margin-left: 15px;">
           <i class="iconfont icon-loading"></i>
         </div>
-        <el-checkbox-group
-          v-else
+        <el-checkbox-group v-else
+          class="clearfix"
+          ref="checkbox-group"
           v-model="checkedItems"
           @change="handleItemChecked">
           <slot></slot>
@@ -51,13 +52,16 @@ export default {
     hoverColor: {
       type: String,
       default: '#bddaf9'
+    },
+    breadcrumbList: {
+      type: Array,
+      default: () => [{ name: '根目录', id: '/' }]
     }
   },
 
   data() {
     return {
       isEmpty: false,
-      breadcrumbList: [{ name: '根目录', id: '/' }],
       checkedItems: [],
       checkAll: false,
       isIndeterminate: true,
@@ -70,16 +74,30 @@ export default {
 
   methods: {
     handleItemChecked(value) {
-      this.$emit('change-checked', value);
+      const checkedCount = this.checkedItems.length;
+      let children = this.$refs['checkbox-group'].$children;
+      children = children.filter(child => child.showCheckbox);
+      
+      this.checkAll = checkedCount === children.length;
+      this.isIndeterminate = checkedCount > 0 && checkedCount < children.length;
     },
 
     handleCheckAllChange(value) {
-      // this.$emit('change-checked', value);
-      console.log(this.$children)
+      this.isIndeterminate = false;
+      this.$refs['checkbox-group'].$children.forEach(child => {
+        child.isChecked = true;
+        if (value) {
+          if (!this.checkedItems.includes(child.data.name) && child.data.showCheckbox) {
+            this.checkedItems.push(child.data.name);
+          }
+        } else {
+          this.checkedItems = [];
+        }
+      });
     },
 
-    clickBreadcrumb() {
-
+    clickBreadcrumb(item, index) {
+      this.$emit('click-breadcrumb', item, index);
     }
   }
 }
