@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Element from 'element-ui';
-import hcl from "./components/index";
+import hcl from "./index";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
