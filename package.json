@@ -4,6 +4,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-bundle": "vue-cli-service build --target lib --name hcl ./src/components/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -24,5 +25,5 @@
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.21"
   },
-  "main": "index.js"
+  "main": "./dist/hcl.common.js"
 }

@@ -1,10 +1,10 @@
-import Button from "./components/button/index.js";
-import CountUp from "./components/count-up/index.js";
-import ContextMenu from "./components/context-menu/index.js";
-import Drawer from "./components/drawer/index.js";
-import DirectoryGroup from "./components/directory-group/index.js";
-import Directory from "./components/directory/index.js";
-import Loading from "./components/loading/index.js";
+import Button from "./button/index.js";
+import CountUp from "./count-up/index.js";
+import ContextMenu from "./context-menu/index.js";
+import Drawer from "./drawer/index.js";
+import DirectoryGroup from "./directory-group/index.js";
+import Directory from "./directory/index.js";
+import Loading from "./loading/index.js";
 
 const components = [
   Button,
