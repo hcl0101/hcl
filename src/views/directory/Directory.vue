@@ -3,8 +3,10 @@
   <div class="view-directory">
     <hcl-directory-group
       ref="directory"
+      show-breadcrumb
       :loading="loading"
       :breadcrumb-list="breadcrumbList"
+      @checked-change="handleChecked"
       @click-breadcrumb="clickBreadcrumb">
       <template v-for="(directory, index) in data">
         <hcl-directory
@@ -13,7 +15,7 @@
           :show-checkbox="directory.showCheckbox"
           :data="directory"
           @click="handleClick"
-          @rename="name => rename(name, index)">
+          @save="name => save(name, index)">
         </hcl-directory>
       </template>
     </hcl-directory-group>
@@ -67,6 +69,10 @@ export default {
   },
 
   methods: {
+    handleChecked(checkedItems) {
+      console.log(checkedItems)
+    },
+
     handleClick(item, e) {
       if (item.type === 'create') {
         this.createFolder();
@@ -115,7 +121,7 @@ export default {
           { label: '删除', value: 'delete' },
           { label: '重命名', value: 'rename' }
         ];
-      } else if (type === 'file') {
+      } else {
         this.contextmenu = [
           { label: '编辑', value: 'edit' },
           { label: '删除', value: 'delete' },
@@ -137,7 +143,7 @@ export default {
       }
     },
 
-    rename(name, index) {
+    save(name, index) {
       this.data[index].name = name;
     }
   }

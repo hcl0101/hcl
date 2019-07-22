@@ -7,17 +7,21 @@
         v-model="checkAll"
         @change="handleCheckAllChange">全选
       </el-checkbox>
-      <el-breadcrumb class="breadcrumb" separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index">
-          <a :title="item.name" @click="clickBreadcrumb(item, index)">{{ item.name }}</a>
-        </el-breadcrumb-item>
-      </el-breadcrumb>
+      <template v-if="showBreadcrumb">
+        <el-breadcrumb class="breadcrumb" separator-class="el-icon-arrow-right">
+          <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index">
+            <a :title="item.name" @click="clickBreadcrumb(item, index)">{{ item.name }}</a>
+          </el-breadcrumb-item>
+        </el-breadcrumb>
+      </template>
       <slot name="header"></slot>
     </div>
     <div class="hcl-directory-group__body">
-      <div v-if="isEmpty" class="hcl-directory-group--empty">{{ emptyText }}</div>
+      <div v-if="isEmpty" class="hcl-directory-group--empty flex-center">
+        <p>{{ emptyText }}</p>
+      </div>
       <template v-else>
-        <div v-if="loading" style="margin-left: 15px;">
+        <div v-if="loading" class="hcl-directory__loading">
           <i class="iconfont icon-loading"></i>
         </div>
         <el-checkbox-group v-else
@@ -45,13 +49,13 @@ export default {
       type: String,
       default: '该文件夹为空!'
     },
-    renameable: {
-      type: Boolean,
-      default: true
-    },
     hoverColor: {
       type: String,
       default: '#bddaf9'
+    },
+    showBreadcrumb: {
+      type: Boolean,
+      default: true
     },
     breadcrumbList: {
       type: Array,
@@ -80,13 +84,15 @@ export default {
       
       this.checkAll = checkedCount === children.length;
       this.isIndeterminate = checkedCount > 0 && checkedCount < children.length;
+
+      this.$emit("checked-change", this.checkedItems);
     },
 
-    handleCheckAllChange(value) {
+    handleCheckAllChange(isChecked) {
       this.isIndeterminate = false;
       this.$refs['checkbox-group'].$children.forEach(child => {
-        child.isChecked = true;
-        if (value) {
+        child.isChecked = isChecked;
+        if (isChecked) {
           if (!this.checkedItems.includes(child.data.name) && child.data.showCheckbox) {
             this.checkedItems.push(child.data.name);
           }
@@ -94,6 +100,7 @@ export default {
           this.checkedItems = [];
         }
       });
+      this.$emit("checked-change", this.checkedItems);
     },
 
     clickBreadcrumb(item, index) {

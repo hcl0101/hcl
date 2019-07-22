@@ -71,12 +71,24 @@ $prefixCls: 'hcl-directory';
     }
   }
   &__body {
+    position: relative;
     flex: 1;
+    min-height: 220px;
     overflow: auto;
   }
   &--empty {
-    line-height: 26px;
-    color: #606266;
-    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    p {
+      color: rgba(0, 0, 0, 0.6);
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
   }
+}
+.#{$prefixCls}__loading {
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }

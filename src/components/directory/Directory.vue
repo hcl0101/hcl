@@ -15,8 +15,9 @@
       type="text"
       v-model="name"
       @click.stop.prevent
+      @blur="handleBlur"
       @keyup.esc="handleKeyupEsc"
-      @keyup.enter="handleKeyupEnter"/>
+      @keyup.enter="$event.target.blur"/>
     <p v-else
       class="ellipsis"
       :title="name"
@@ -106,14 +107,14 @@ export default {
       if (!this.renameable) return
       this.data.editing = true;
     },
+    handleBlur() {
+      this.data.editing = false;
+      this.$emit('save', this.name);
+    },
     handleKeyupEsc() {
       this.data.editing = false;
       this.name = this.cacheName;
-      this.$emit('rename', this.name);
-    },
-    handleKeyupEnter() {
-      this.data.editing = false;
-      this.$emit('rename', this.name);
+      this.$emit('save', this.name);
     }
   }
 }
