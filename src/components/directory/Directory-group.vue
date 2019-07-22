@@ -76,6 +76,15 @@ export default {
     this.isEmpty = this.$slots.default && this.$slots.default.length ? false : true;
   },
 
+  watch: {
+    breadcrumbList(newVal, oldVal) {
+      if (newVal.length !== oldVal.length) {
+        this.checkedItems = [];
+        this.isIndeterminate = true;
+      }
+    }
+  },
+
   methods: {
     handleItemChecked(value) {
       const checkedCount = this.checkedItems.length;
@@ -85,10 +94,18 @@ export default {
       this.checkAll = checkedCount === children.length;
       this.isIndeterminate = checkedCount > 0 && checkedCount < children.length;
 
-      this.$emit("checked-change", this.checkedItems);
+      let checked = [];
+      children.forEach(child => {
+        if (child.isChecked) {
+          checked.push(child.data);
+        }
+      });
+      this.$emit("checked-change", checked);
     },
 
     handleCheckAllChange(isChecked) {
+      let checked = [];
+
       this.isIndeterminate = false;
       this.$refs['checkbox-group'].$children.forEach(child => {
         child.isChecked = isChecked;
@@ -96,11 +113,13 @@ export default {
           if (!this.checkedItems.includes(child.data.name) && child.data.showCheckbox) {
             this.checkedItems.push(child.data.name);
           }
+          checked.push(child.data);
         } else {
           this.checkedItems = [];
+          checked = [];
         }
       });
-      this.$emit("checked-change", this.checkedItems);
+      this.$emit("checked-change", checked);
     },
 
     clickBreadcrumb(item, index) {
