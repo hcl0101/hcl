@@ -4130,12 +4130,12 @@ Drawer_component.options.__file = "Drawer.vue"
 
 
 /* harmony default export */ var drawer = (Drawer);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"25cf74de-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/directory/Directory-group.vue?vue&type=template&id=38103000&
-var Directory_groupvue_type_template_id_38103000_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"hcl-directory-group"},[_c('div',{staticClass:"hcl-directory-group__header"},[_c('el-checkbox',{staticClass:"check-all",attrs:{"indeterminate":_vm.isIndeterminate},on:{"change":_vm.handleCheckAllChange},model:{value:(_vm.checkAll),callback:function ($$v) {_vm.checkAll=$$v},expression:"checkAll"}},[_vm._v("全选\n    ")]),(_vm.showBreadcrumb)?[_c('el-breadcrumb',{staticClass:"breadcrumb",attrs:{"separator-class":"el-icon-arrow-right"}},_vm._l((_vm.breadcrumbList),function(item,index){return _c('el-breadcrumb-item',{key:index},[_c('a',{attrs:{"title":item.name},on:{"click":function($event){_vm.clickBreadcrumb(item, index)}}},[_vm._v(_vm._s(item.name))])])}),1)]:_vm._e(),_vm._t("header")],2),_c('div',{staticClass:"hcl-directory-group__body"},[(_vm.isEmpty)?_c('div',{staticClass:"hcl-directory-group--empty flex-center"},[_c('p',[_vm._v(_vm._s(_vm.emptyText))])]):[(_vm.loading)?_c('div',{staticClass:"hcl-directory__loading"},[_c('i',{staticClass:"iconfont icon-loading"})]):_c('el-checkbox-group',{ref:"checkbox-group",staticClass:"clearfix",on:{"change":_vm.handleItemChecked},model:{value:(_vm.checkedItems),callback:function ($$v) {_vm.checkedItems=$$v},expression:"checkedItems"}},[_vm._t("default")],2)]],2)])}
-var Directory_groupvue_type_template_id_38103000_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules//.cache//vue-loader","cacheIdentifier":"25cf74de-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/directory/Directory-group.vue?vue&type=template&id=2aaf2647&
+var Directory_groupvue_type_template_id_2aaf2647_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"hcl-directory-group"},[_c('div',{staticClass:"hcl-directory-group__header"},[_c('el-checkbox',{staticClass:"check-all",attrs:{"indeterminate":_vm.isIndeterminate},on:{"change":_vm.handleCheckAllChange},model:{value:(_vm.checkAll),callback:function ($$v) {_vm.checkAll=$$v},expression:"checkAll"}},[_vm._v("全选\n    ")]),(_vm.showBreadcrumb)?[_c('el-breadcrumb',{staticClass:"breadcrumb",attrs:{"separator-class":"el-icon-arrow-right"}},_vm._l((_vm.breadcrumbList),function(item,index){return _c('el-breadcrumb-item',{key:index},[_c('a',{attrs:{"title":item.name},on:{"click":function($event){_vm.clickBreadcrumb(item, index)}}},[_vm._v(_vm._s(item.name))])])}),1)]:_vm._e(),_vm._t("header")],2),_c('div',{staticClass:"hcl-directory-group__body"},[(_vm.isEmpty)?_c('div',{staticClass:"hcl-directory-group--empty flex-center"},[_c('p',[_vm._v(_vm._s(_vm.emptyText))])]):[(_vm.loading)?_c('div',{staticClass:"hcl-directory__loading"},[_c('i',{staticClass:"iconfont icon-loading"})]):_c('el-checkbox-group',{ref:"checkbox-group",staticClass:"clearfix",on:{"change":_vm.handleItemChecked},model:{value:(_vm.checkedItems),callback:function ($$v) {_vm.checkedItems=$$v},expression:"checkedItems"}},[_vm._t("default")],2)]],2)])}
+var Directory_groupvue_type_template_id_2aaf2647_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/directory/Directory-group.vue?vue&type=template&id=38103000&
+// CONCATENATED MODULE: ./src/components/directory/Directory-group.vue?vue&type=template&id=2aaf2647&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
 var es7_array_includes = __webpack_require__("6762");
@@ -4226,6 +4226,15 @@ var es6_string_includes = __webpack_require__("2fdb");
   created: function created() {
     this.isEmpty = this.$slots.default && this.$slots.default.length ? false : true;
   },
+  watch: {
+    breadcrumbList: function breadcrumbList(newVal, oldVal) {
+      if (newVal.length !== oldVal.length) {
+        this.checkedItems = [];
+        this.isIndeterminate = true;
+        this.$emit("checked-change", []);
+      }
+    }
+  },
   methods: {
     handleItemChecked: function handleItemChecked(value) {
       var checkedCount = this.checkedItems.length;
@@ -4235,11 +4244,18 @@ var es6_string_includes = __webpack_require__("2fdb");
       });
       this.checkAll = checkedCount === children.length;
       this.isIndeterminate = checkedCount > 0 && checkedCount < children.length;
-      this.$emit("checked-change", this.checkedItems);
+      var checked = [];
+      children.forEach(function (child) {
+        if (child.isChecked) {
+          checked.push(child.data);
+        }
+      });
+      this.$emit("checked-change", checked);
     },
     handleCheckAllChange: function handleCheckAllChange(isChecked) {
       var _this = this;
 
+      var checked = [];
       this.isIndeterminate = false;
       this.$refs['checkbox-group'].$children.forEach(function (child) {
         child.isChecked = isChecked;
@@ -4248,11 +4264,14 @@ var es6_string_includes = __webpack_require__("2fdb");
           if (!_this.checkedItems.includes(child.data.name) && child.data.showCheckbox) {
             _this.checkedItems.push(child.data.name);
           }
+
+          checked.push(child.data);
         } else {
           _this.checkedItems = [];
+          checked = [];
         }
       });
-      this.$emit("checked-change", this.checkedItems);
+      this.$emit("checked-change", checked);
     },
     clickBreadcrumb: function clickBreadcrumb(item, index) {
       this.$emit('click-breadcrumb', item, index);
@@ -4271,8 +4290,8 @@ var es6_string_includes = __webpack_require__("2fdb");
 
 var Directory_group_component = normalizeComponent(
   directory_Directory_groupvue_type_script_lang_js_,
-  Directory_groupvue_type_template_id_38103000_render,
-  Directory_groupvue_type_template_id_38103000_staticRenderFns,
+  Directory_groupvue_type_template_id_2aaf2647_render,
+  Directory_groupvue_type_template_id_2aaf2647_staticRenderFns,
   false,
   null,
   null,

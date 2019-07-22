@@ -81,6 +81,7 @@ export default {
       if (newVal.length !== oldVal.length) {
         this.checkedItems = [];
         this.isIndeterminate = true;
+        this.$emit("checked-change", []);
       }
     }
   },
