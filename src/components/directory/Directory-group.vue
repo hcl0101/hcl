@@ -17,7 +17,7 @@
       <slot name="header"></slot>
     </div>
     <div class="hcl-directory-group__body">
-      <div v-if="isEmpty" class="hcl-directory-group--empty flex-center">
+      <div v-if="!$slots.default" class="hcl-directory-group--empty flex-center">
         <p>{{ emptyText }}</p>
       </div>
       <template v-else>
@@ -65,24 +65,17 @@ export default {
 
   data() {
     return {
-      isEmpty: false,
       checkedItems: [],
       checkAll: false,
       isIndeterminate: true,
     };
   },
 
-  created() {
-    this.isEmpty = this.$slots.default && this.$slots.default.length ? false : true;
-  },
-
   watch: {
     breadcrumbList(newVal, oldVal) {
-      if (newVal.length !== oldVal.length) {
-        this.checkedItems = [];
-        this.isIndeterminate = true;
-        this.$emit("checked-change", []);
-      }
+      this.checkedItems = [];
+      this.isIndeterminate = true;
+      this.$emit("checked-change", []);
     }
   },
 

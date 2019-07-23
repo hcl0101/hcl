@@ -103,8 +103,6 @@ export default {
       this.$emit('click', this.data, e);
     },
     handleRename() {
-      if (!this.$parent.renameable) return
-      if (!this.renameable) return
       this.data.editing = true;
     },
     handleBlur() {
@@ -114,7 +112,6 @@ export default {
     handleKeyupEsc() {
       this.data.editing = false;
       this.name = this.cacheName;
-      this.$emit('save', this.name);
     }
   }
 }
